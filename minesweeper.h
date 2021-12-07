@@ -46,14 +46,19 @@ int gameLoop()
             case sf::Event::MouseButtonPressed:
             {
                 std::cout << "Mouse button pressed\n";
-                unsigned int mouse_tile_x = (int)sf::Mouse::getPosition(tb->window).x / 32;
-                unsigned int mouse_tile_y = (int)sf::Mouse::getPosition(tb->window).y / 32;
+                unsigned int mouse_tile_x = (int) sf::Mouse::getPosition(tb->window).x / 32;
+                unsigned int mouse_tile_y = (int) sf::Mouse::getPosition(tb->window).y / 32;
                 switch (event.mouseButton.button)
                 {
                 case sf::Mouse::Left:
                 {
                     std::cout << mouse_tile_x << ", " << mouse_tile_y << std::endl;
-                    tb->gameState->getTile(mouse_tile_x,mouse_tile_y)->onClickLeft();
+                    Tile *tempTile = tb->gameState->getTile(mouse_tile_x,mouse_tile_y);
+                    if (!tempTile) {
+                        std::cout << "Tile out of bounds" << std::endl;
+                    } else {
+                        tempTile->onClickLeft();
+                    }
                     render();
                 }
                 default:
@@ -78,7 +83,7 @@ int gameLoop()
 void render()
 {
     Toolbox *tb = Toolbox::getInstance();
-    tb->window.clear(sf::Color::White);
+    tb->window.clear(sf::Color::Transparent);
     for (int j = 0; j < 16; j++)
     {
         for (int i = 0; i < 25; i++)

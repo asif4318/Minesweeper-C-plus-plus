@@ -24,12 +24,12 @@ GameState::GameState(const char *filepath)
                 if (line[i] == '1')
                 {
                     tiles.push_back(new Tile(sf::Vector2f(i * 32, gameBoard.size()*32)));
-                    std::cout << "Bomb" << std::endl;
+                    //std::cout << "Bomb" << std::endl;
                 }
                 else
                 {
                     tiles.push_back(new Tile(sf::Vector2f(i * 32, gameBoard.size()*32)));
-                    std::cout << "Normal" << std::endl;
+                    //std::cout << "Normal" << std::endl;
                 }
             }
             gameBoard.push_back(tiles);
@@ -44,5 +44,7 @@ GameState::GameState(const char *filepath)
 
 Tile *GameState::getTile(int x, int y)
 {
+    if (y > gameBoard.size()) return nullptr;
+    if (x > gameBoard[0].size()) return nullptr;
     return gameBoard[y][x];
 }
