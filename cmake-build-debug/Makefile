@@ -177,30 +177,6 @@ GameState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/GameState.cpp.s
 .PHONY : GameState.cpp.s
 
-Toolbox.o: Toolbox.cpp.o
-.PHONY : Toolbox.o
-
-# target to build an object file
-Toolbox.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o
-.PHONY : Toolbox.cpp.o
-
-Toolbox.i: Toolbox.cpp.i
-.PHONY : Toolbox.i
-
-# target to preprocess a source file
-Toolbox.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.i
-.PHONY : Toolbox.cpp.i
-
-Toolbox.s: Toolbox.cpp.s
-.PHONY : Toolbox.s
-
-# target to generate assembly for a file
-Toolbox.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.s
-.PHONY : Toolbox.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -240,9 +216,6 @@ help:
 	@echo "... GameState.o"
 	@echo "... GameState.i"
 	@echo "... GameState.s"
-	@echo "... Toolbox.o"
-	@echo "... Toolbox.i"
-	@echo "... Toolbox.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

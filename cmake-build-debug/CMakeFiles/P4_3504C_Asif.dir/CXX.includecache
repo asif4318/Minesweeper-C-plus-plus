@@ -6,17 +6,33 @@
 
 #IncludeRegexTransform: 
 
-/Users/asif/CLionProjects/P4-3504C-Asif/main.cpp
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
 iostream
 -
-minesweeper.h
-/Users/asif/CLionProjects/P4-3504C-Asif/minesweeper.h
 SFML/Graphics.hpp
 -
+
+/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
+SFML/Graphics.hpp
+-
+GameState.h
+/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/main.cpp
+minesweeper.h
+/Users/asif/CLionProjects/P4-3504C-Asif/minesweeper.h
 
 /Users/asif/CLionProjects/P4-3504C-Asif/minesweeper.h
 SFML/Graphics.hpp
 -
+Toolbox.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
 
 /opt/homebrew/include/SFML/Config.hpp
 TargetConditionals.h
