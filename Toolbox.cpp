@@ -1,10 +1,17 @@
-//
-// Created by Asif Islam on 12/4/21.
-//
-
 #include "Toolbox.h"
 
-Toolbox::Toolbox() {
-    window.setSize(sf::Vector2<unsigned int>(800,600));
-    window.setTitle("P4 Asif Islam")
+Toolbox::Toolbox()
+{
+    window.create(sf::VideoMode(800, 600), "P4 - Minesweeper, Asif Islam");
+    instance = nullptr;
+    window.clear(sf::Color::White);
+}
+
+Toolbox* Toolbox::getInstance()
+{
+    if (!instance)
+    {
+        instance = new Toolbox();
+    }
+    return instance;
 }

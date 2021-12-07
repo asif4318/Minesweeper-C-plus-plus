@@ -2,26 +2,20 @@
 // Created by Asif Islam on 12/4/21.
 //
 
-#ifndef P4_3504C_ASIF_TOOLBOX_H
-#define P4_3504C_ASIF_TOOLBOX_H
+#pragma once
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
-#include "Button.h"
-
 
 class Toolbox {
 private:
     Toolbox();
-    static Toolbox *instance;
+    static inline Toolbox *instance;
 public:
     sf::RenderWindow window;
     GameState* gameState;
-    Button* debugButton;
+    /*Button* debugButton;
     Button* newGameButton;
     Button* testButton1;
-    Button* testButton2;
-    Toolbox* getInstance();
+    Button* testButton2;*/
+    static Toolbox* getInstance();
 };
-
-
-#endif //P4_3504C_ASIF_TOOLBOX_H

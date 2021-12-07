@@ -5,33 +5,87 @@
 #ifndef P4_3504C_ASIF_MINESWEEPER_H
 #define P4_3504C_ASIF_MINESWEEPER_H
 #include <SFML/Graphics.hpp>
+#include "Toolbox.h"
+#include "Tile.h"
+#include "GameState.h"
+#include <iostream>
 
 #endif //P4_3504C_ASIF_MINESWEEPER_H
 
-int launch() {
-    // create the window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "PR");
+void render();
+int gameLoop();
 
-    // run the program as long as the window is open
-    while (window.isOpen())
+int launch()
+{
+    Toolbox *tb = Toolbox::getInstance();
+    tb->gameState = new GameState("boards/testboard2.brd");
+    render();
+    gameLoop();
+    return 0;
+};
+
+int gameLoop()
+{
+    Toolbox *tb = Toolbox::getInstance();
+
+    while (tb->window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (window.pollEvent(event))
+        while (tb->window.pollEvent(event))
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
+            switch (event.type)
+            {
+            //Close window
+            case sf::Event::Closed:
+            {
+                tb->window.close();
+                break;
+            }
+
+            case sf::Event::MouseButtonPressed:
+            {
+                std::cout << "Mouse button pressed\n";
+                unsigned int mouse_tile_x = (int)sf::Mouse::getPosition(tb->window).x / 32;
+                unsigned int mouse_tile_y = (int)sf::Mouse::getPosition(tb->window).y / 32;
+                switch (event.mouseButton.button)
+                {
+                case sf::Mouse::Left:
+                {
+                    std::cout << mouse_tile_x << ", " << mouse_tile_y << std::endl;
+                    tb->gameState->getTile(mouse_tile_x,mouse_tile_y)->onClickLeft();
+                    render();
+                }
+                default:
+                {
+                    break;
+                }
+                }
+            }
+
+            default:
+            {
+                break;
+            }
+            }
         }
-
-        // clear the window with black color
-        window.clear(sf::Color::Black);
-
-        // draw everything here...
-        // window.draw(...);
-
-        // end the current frame
-        window.display();
     }
+
     return 0;
-};
+}
+
+//Draw all UI Elements based on GameState
+void render()
+{
+    Toolbox *tb = Toolbox::getInstance();
+    tb->window.clear(sf::Color::White);
+    for (int j = 0; j < 16; j++)
+    {
+        for (int i = 0; i < 25; i++)
+        {
+            tb->gameState->getTile(i, j)->draw();
+        }
+    }
+
+    tb->window.display();
+}

@@ -2,19 +2,28 @@
 // Created by Asif Islam on 12/4/21.
 //
 
-#ifndef P4_3504C_ASIF_GAMESTATE_H
-#define P4_3504C_ASIF_GAMESTATE_H
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <vector>
+#include "Tile.h"
 
-
-class GameState {
+class GameState
+{
+private:
+    std::vector< std::vector<Tile *> > gameBoard;
+    
 public:
-    enum PlayStatus {
+    enum PlayStatus
+    {
         WIN,
         LOSS,
         PLAYING
     };
-
+    GameState(sf::Vector2f _dimensions = sf::Vector2f(25, 16), int _numberOfMines = 50);
+    GameState(const char *filepath);
+    int getFlagCount();
+    int getMineCount();
+    Tile *getTile(int x, int y);
+    PlayStatus getPlayStatus();
+    void setPlayStatus(PlayStatus _status);
 };
-
-
-#endif //P4_3504C_ASIF_GAMESTATE_H

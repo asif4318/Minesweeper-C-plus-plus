@@ -17,26 +17,6 @@
 					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="P4_3504C_Asif">
 				<Option output="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/P4_3504C_Asif" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug"/>
@@ -81,6 +61,26 @@
 					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j10 -f &quot;/Users/asif/CLionProjects/P4-3504C-Asif/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Button.cpp">
 			<Option target="P4_3504C_Asif"/>
@@ -92,6 +92,15 @@
 			<Option target="P4_3504C_Asif"/>
 		</Unit>
 		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h">
+			<Option target="P4_3504C_Asif"/>
+		</Unit>
+		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp">
+			<Option target="P4_3504C_Asif"/>
+		</Unit>
+		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Tile.h">
+			<Option target="P4_3504C_Asif"/>
+		</Unit>
+		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.cpp">
 			<Option target="P4_3504C_Asif"/>
 		</Unit>
 		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h">
