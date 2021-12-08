@@ -6,7 +6,7 @@
 #include "MineTile.h"
 #include <iostream>
 #include <vector>
-#include <chrono>ç
+#include <chrono>
 #include <random>
 #include <fstream>
 
@@ -43,6 +43,8 @@ GameState::GameState(sf::Vector2f _dimensions, int _numberOfMines)
         }
         gameBoard.push_back(tiles);
     }
+
+    createTileNeighbors();
 }
 
 GameState::GameState(const char *filepath)
@@ -73,6 +75,8 @@ GameState::GameState(const char *filepath)
     {
         std::cerr << std::endl;
     }
+
+    createTileNeighbors();
 }
 
 Tile *GameState::getTile(int x, int y)
@@ -108,4 +112,48 @@ GameState::PlayStatus GameState::getPlayStatus()
 void GameState::setPlayStatus(PlayStatus _status)
 {
     this->status = _status;
+}
+
+void GameState::createTileNeighbors() {
+    for (int i = 0; i < gameBoard.size(); i++)
+    {
+        for (int j = 0; j < gameBoard[i].size(); j++)
+        {
+            std::array<Tile *, 8> tileNeighbor;
+            for (int i = 0; i < 8; i++)
+                tileNeighbor[i] = nullptr;
+
+            //Set the left neighbor
+            if (j != 0)
+                tileNeighbor[3] = gameBoard[i][j - 1];
+            //Set the right neighbor
+            if (j != gameBoard[i].size() - 1)
+                tileNeighbor[4] = gameBoard[i][j + 1];
+            //Set the top neighbor
+            if (i != 0)
+                tileNeighbor[1] = gameBoard[i - 1][j];
+            //Set the bottom neighbor
+            if (i != gameBoard.size() - 1)
+                tileNeighbor[6] = gameBoard[i + 1][j];
+
+            //Set top left
+            if (j != 0 && i != 0) {
+                tileNeighbor[0] = gameBoard[i-1][j-1];
+            }
+            //Set top right
+            if (j != gameBoard[i].size() - 1 && i != 0) {
+                tileNeighbor[2] = gameBoard[i-1][j+1];
+            }
+            //Set Bottom Left
+            if (j != 0 && i != gameBoard.size()-1) {
+                tileNeighbor[5] = gameBoard[i+1][j-1];
+            }
+            //Set Bottom Right
+            if (j != gameBoard[i].size()-1 && i != gameBoard.size()-1) {
+                tileNeighbor[7] = gameBoard[i+1][j+1];
+            }
+
+            gameBoard[i][j]->setNeighbors(tileNeighbor);
+        }
+    }
 }

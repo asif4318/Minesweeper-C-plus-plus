@@ -21,7 +21,7 @@ protected:
     static inline sf::Texture hidden;
     static inline sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
-    std::array<Tile*, 8> neighobrs;
+    std::array<Tile *, 8> neighobrs;
 
 public:
     Tile(sf::Vector2f position);
@@ -37,5 +37,7 @@ public:
     virtual void onClickLeft();
     void onClickRight();
     void draw();
-    //void revealNeighbors();
+
+protected:
+    void revealNeighbors();
 };

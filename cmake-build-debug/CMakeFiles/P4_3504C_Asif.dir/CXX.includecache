@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/Users/asif/CLionProjects/P4-3504C-Asif/GameState.cpp
+GameState.h
+/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+MineTile.h
+/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
+iostream
+-
+vector
+-
+chrono
+-
+random
+-
+fstream
+-
+
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
 SFML/Graphics.hpp
 -
@@ -14,13 +30,9 @@ vector
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 
-/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp
+/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
-Toolbox.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
-iostream
--
 
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 SFML/Graphics.hpp
@@ -33,6 +45,24 @@ SFML/Graphics.hpp
 -
 GameState.h
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/main.cpp
+minesweeper.h
+/Users/asif/CLionProjects/P4-3504C-Asif/minesweeper.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/minesweeper.h
+SFML/Graphics.hpp
+-
+Toolbox.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
+Tile.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
+MineTile.h
+/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
+GameState.h
+/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+iostream
+-
 
 /opt/homebrew/include/SFML/Config.hpp
 TargetConditionals.h

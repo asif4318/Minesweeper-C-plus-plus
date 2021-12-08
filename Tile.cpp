@@ -107,3 +107,11 @@ Tile::State Tile::getState()
 {
     return state;
 }
+
+std::array<Tile *, 8> &Tile::getNeighbors() {
+    return neighobrs;
+}
+
+void Tile::setNeighbors(std::array<Tile *, 8> _neighbors) {
+    neighobrs = _neighbors;
+}

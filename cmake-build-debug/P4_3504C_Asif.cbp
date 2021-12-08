@@ -94,6 +94,12 @@
 		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h">
 			<Option target="P4_3504C_Asif"/>
 		</Unit>
+		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.cpp">
+			<Option target="P4_3504C_Asif"/>
+		</Unit>
+		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h">
+			<Option target="P4_3504C_Asif"/>
+		</Unit>
 		<Unit filename="/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp">
 			<Option target="P4_3504C_Asif"/>
 		</Unit>

@@ -20,7 +20,7 @@ int launch()
 {
 
     Toolbox *tb = Toolbox::getInstance();
-    tb->gameState = new GameState(sf::Vector2f(25,16), 50);
+    tb->gameState = new GameState("boards/testboard1.brd");
     render();
     gameLoop();
     return 0;
@@ -87,7 +87,6 @@ int gameLoop()
                         tempTile->onClickRight();
                     }
                     render();
-                    std::cout << "Flag Count: " << tb->gameState->getFlagCount() << std::endl;
                     break;
                 }
                 default:
