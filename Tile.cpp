@@ -109,9 +109,9 @@ Tile::State Tile::getState()
 }
 
 std::array<Tile *, 8> &Tile::getNeighbors() {
-    return neighobrs;
+    return neighbor;
 }
 
 void Tile::setNeighbors(std::array<Tile *, 8> _neighbors) {
-    neighobrs = _neighbors;
+    neighbor = _neighbors;
 }
