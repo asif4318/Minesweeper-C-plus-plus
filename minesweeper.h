@@ -18,8 +18,9 @@ int gameLoop();
 
 int launch()
 {
+
     Toolbox *tb = Toolbox::getInstance();
-    tb->gameState = new GameState("boards/testboard2.brd");
+    tb->gameState = new GameState(sf::Vector2f(25,16), 50);
     render();
     gameLoop();
     return 0;
@@ -66,6 +67,7 @@ int gameLoop()
                         if (dynamic_cast<MineTile *>(tempTile))
                         {
                             tb->gameState->setPlayStatus(tb->gameState->LOSS);
+                            //tb->window.close();
                         }
                     }
                     render();
