@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include "Toolbox.h"
 #include "Tile.h"
+#include "MineTile.h"
 #include "GameState.h"
 #include <iostream>
 
@@ -62,6 +63,10 @@ int gameLoop()
                     else
                     {
                         tempTile->onClickLeft();
+                        if (dynamic_cast<MineTile *>(tempTile))
+                        {
+                            tb->gameState->setPlayStatus(tb->gameState->LOSS);
+                        }
                     }
                     render();
                     break;

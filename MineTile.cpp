@@ -1,4 +1,5 @@
 #include "MineTile.h"
+#include "Toolbox.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -26,7 +27,6 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
 
 void MineTile::onClickLeft()
 {
-    std::cout << "Exploded" << std::endl;
     if (state == HIDDEN && state != FLAGGED)
     {
         setState(REVEALED);

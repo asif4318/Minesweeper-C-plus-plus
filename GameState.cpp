@@ -58,3 +58,7 @@ int GameState::getFlagCount() {
 
     return flagCount;
 }
+
+void GameState::setPlayStatus(PlayStatus _status) {
+    this->status = _status;
+}

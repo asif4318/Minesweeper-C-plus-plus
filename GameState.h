@@ -19,6 +19,9 @@ public:
         LOSS,
         PLAYING
     };
+    private:
+    PlayStatus status;
+    public:
     GameState(sf::Vector2f _dimensions = sf::Vector2f(25, 16), int _numberOfMines = 50);
     GameState(const char *filepath);
     int getFlagCount();
