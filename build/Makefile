@@ -177,6 +177,30 @@ GameState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/GameState.cpp.s
 .PHONY : GameState.cpp.s
 
+MineTile.o: MineTile.cpp.o
+.PHONY : MineTile.o
+
+# target to build an object file
+MineTile.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o
+.PHONY : MineTile.cpp.o
+
+MineTile.i: MineTile.cpp.i
+.PHONY : MineTile.i
+
+# target to preprocess a source file
+MineTile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.i
+.PHONY : MineTile.cpp.i
+
+MineTile.s: MineTile.cpp.s
+.PHONY : MineTile.s
+
+# target to generate assembly for a file
+MineTile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/P4_3504C_Asif.dir/build.make CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.s
+.PHONY : MineTile.cpp.s
+
 Tile.o: Tile.cpp.o
 .PHONY : Tile.o
 
@@ -264,6 +288,9 @@ help:
 	@echo "... GameState.o"
 	@echo "... GameState.i"
 	@echo "... GameState.s"
+	@echo "... MineTile.o"
+	@echo "... MineTile.i"
+	@echo "... MineTile.s"
 	@echo "... Tile.o"
 	@echo "... Tile.i"
 	@echo "... Tile.s"

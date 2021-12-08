@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/P4_3504C_Asif.dir/Button.cpp.o.d"
   "CMakeFiles/P4_3504C_Asif.dir/GameState.cpp.o"
   "CMakeFiles/P4_3504C_Asif.dir/GameState.cpp.o.d"
+  "CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o"
+  "CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o.d"
   "CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o"
   "CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o.d"
   "CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o"

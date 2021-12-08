@@ -23,5 +23,10 @@
   "directory": "/Users/asif/CLionProjects/P4-3504C-Asif/build",
   "command": "/usr/bin/clang++  -isystem /opt/homebrew/include -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -std=gnu++17 -o CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o -c /Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp",
   "file": "/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp"
+},
+{
+  "directory": "/Users/asif/CLionProjects/P4-3504C-Asif/build",
+  "command": "/usr/bin/clang++  -isystem /opt/homebrew/include -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk -std=gnu++17 -o CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o -c /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.cpp",
+  "file": "/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.cpp"
 }
 ]
