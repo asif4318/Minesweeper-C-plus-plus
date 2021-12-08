@@ -310,6 +310,7 @@ CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o: \
   /opt/homebrew/include/SFML/Graphics/Sprite.hpp \
   /opt/homebrew/include/SFML/Graphics/Text.hpp \
   /opt/homebrew/include/SFML/Graphics/VertexBuffer.hpp \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
   /Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h \
   /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \

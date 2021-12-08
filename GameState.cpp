@@ -23,12 +23,13 @@ GameState::GameState(const char *filepath)
             {
                 if (line[i] == '1')
                 {
-                    tiles.push_back(new Tile(sf::Vector2f(i * 32, gameBoard.size()*32)));
+                    //TODO: PUSH BACK A BOMB
+                    tiles.push_back(new Tile(sf::Vector2f(i, gameBoard.size())));
                     //std::cout << "Bomb" << std::endl;
                 }
-                else
+                else if (line[i] == '0')
                 {
-                    tiles.push_back(new Tile(sf::Vector2f(i * 32, gameBoard.size()*32)));
+                    tiles.push_back(new Tile(sf::Vector2f(i, gameBoard.size())));
                     //std::cout << "Normal" << std::endl;
                 }
             }

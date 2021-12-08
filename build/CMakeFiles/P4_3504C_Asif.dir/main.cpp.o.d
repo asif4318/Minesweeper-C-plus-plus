@@ -313,5 +313,6 @@ CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: \
   /Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h \
   /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h \
   /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
