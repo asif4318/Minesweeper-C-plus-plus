@@ -13,6 +13,11 @@ public:
         EXPLODED
     };
 
+private:
+    int numOfMines = 0;
+    void countSurroundingMines();
+    void setRevealedSprite();
+
 protected:
     State state;
     sf::Vector2f position;
@@ -21,7 +26,7 @@ protected:
     static inline sf::Texture hidden;
     static inline sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
-    std::array<Tile *, 8> neighobrs;
+    std::array<Tile *, 8> neighbor;
 
 public:
     Tile(sf::Vector2f position);
