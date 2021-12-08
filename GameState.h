@@ -25,6 +25,7 @@ public:
     GameState(sf::Vector2f _dimensions = sf::Vector2f(25, 16), int _numberOfMines = 50);
     GameState(const char *filepath);
     int getFlagCount();
+    //TODO: GET MINE COUNT();
     int getMineCount();
     Tile *getTile(int x, int y);
     PlayStatus getPlayStatus();
