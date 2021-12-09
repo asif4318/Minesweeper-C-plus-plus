@@ -20,7 +20,7 @@ int launch()
 {
 
     Toolbox *tb = Toolbox::getInstance();
-    tb->gameState = new GameState("boards/testboard1.brd");
+    tb->gameState = new GameState("boards/testboard2.brd");
     render();
     gameLoop();
     return 0;
@@ -120,5 +120,6 @@ void render()
         }
     }
 
+    tb->window.draw(*tb->debugButton->getSprite());
     tb->window.display();
 }

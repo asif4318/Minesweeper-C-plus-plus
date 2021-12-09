@@ -157,3 +157,13 @@ void GameState::createTileNeighbors() {
         }
     }
 }
+
+GameState::~GameState() {
+    for (int i = 0; i < gameBoard.size(); i++) {
+        for (auto tile : gameBoard[i]) {
+            delete tile;
+        }
+        gameBoard[i].clear();
+    }
+    gameBoard.clear();
+}

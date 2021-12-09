@@ -2,8 +2,8 @@
 // Created by Asif Islam on 12/4/21.
 //
 
-#ifndef P4_3504C_ASIF_BUTTON_H
-#define P4_3504C_ASIF_BUTTON_H
+#pragma once 
+
 #include "Button.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -20,9 +20,5 @@ public:
     void setSprite(sf::Sprite* _sprite);
     void onClick();
 };
-
-
-
-#endif //P4_3504C_ASIF_BUTTON_H
 
 

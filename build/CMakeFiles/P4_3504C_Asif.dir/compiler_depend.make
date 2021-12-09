@@ -957,6 +957,7 @@ CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o: ../MineTile.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
   ../Toolbox.h \
   ../GameState.h \
+  ../Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
 
@@ -1274,6 +1275,7 @@ CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o: ../Tile.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
   ../Toolbox.h \
   ../GameState.h \
+  ../Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
 
@@ -1590,7 +1592,10 @@ CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o: ../Toolbox.cpp \
   /opt/homebrew/include/SFML/Graphics/VertexBuffer.hpp \
   ../GameState.h \
   ../Tile.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
+  ../Button.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
 
 CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: ../main.cpp \
   ../minesweeper.h \
@@ -1907,9 +1912,10 @@ CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: ../main.cpp \
   ../GameState.h \
   ../Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
-  ../MineTile.h \
+  ../Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream \
+  ../MineTile.h
 
 
 ../Toolbox.cpp:

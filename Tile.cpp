@@ -7,6 +7,7 @@ void Tile::onClickLeft()
     if (state == HIDDEN && state != FLAGGED)
     {
         setState(REVEALED);
+        revealNeighbors();
     }
 }
 
@@ -31,6 +32,7 @@ void Tile::onClickRight()
 
 Tile::Tile(sf::Vector2f position)
 {
+    isMine = false;
     this->position = position;
     state = HIDDEN;
     if (!hidden.loadFromFile("images/tile_hidden.png"))
@@ -108,10 +110,84 @@ Tile::State Tile::getState()
     return state;
 }
 
-std::array<Tile *, 8> &Tile::getNeighbors() {
+void Tile::setRevealedSprite()
+{
+    int mineCount = 0;
+    //Count the number of neighboring mines
+    for (int i = 0; i < 8; i++)
+    {
+        if (neighbor[i] != nullptr)
+        {
+            if (neighbor[i]->isMine == true)
+                mineCount++;
+        }
+    }
+
+    std::cout << "Tile Mine count is: " << mineCount << std::endl;
+    if (mineCount != 0)
+    {
+        sf::RenderTexture renderTexture;
+        renderTexture.create(32, 32);
+        sf::Texture numberTexture;
+        if (!numberTexture.loadFromFile("images/number_" + std::to_string(mineCount) + ".png"))
+            ;
+        {
+            std::cerr << std::endl;
+        }
+
+        sf::Sprite revealedTile;
+        sf::Sprite numberedSprite;
+
+        revealedTile.setTexture(revealed);
+        numberedSprite.setTexture(numberTexture);
+
+        renderTexture.draw(revealedTile);
+        renderTexture.draw(numberedSprite);
+        renderTexture.display();
+
+        revealed.loadFromImage(renderTexture.getTexture().copyToImage());
+    }
+}
+
+std::array<Tile *, 8> &Tile::getNeighbors()
+{
     return neighbor;
 }
 
-void Tile::setNeighbors(std::array<Tile *, 8> _neighbors) {
+void Tile::setNeighbors(std::array<Tile *, 8> _neighbors)
+{
     neighbor = _neighbors;
+    setRevealedSprite();
+}
+
+void Tile::revealNeighbors()
+{
+    bool hasMine = false;
+    for (int i = 0; i < 8; i++)
+    {
+        if (neighbor[i] != nullptr)
+        {
+            if (neighbor[i]->isMine == true)
+            {
+                hasMine = true;
+            }
+        }
+    }
+
+    if (hasMine == false)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (neighbor[i] != nullptr)
+            {
+                //Don't go over tiles that are already revealed;
+                if (neighbor[i]->getState() != REVEALED){
+                    std::cout << "Location of revealed tile is: " << position.x << ", " << position.y << std::endl;
+
+                    neighbor[i]->setState(Tile::REVEALED);
+                    neighbor[i]->revealNeighbors();
+                }
+            }
+        }
+    }
 }

@@ -158,6 +158,7 @@ CMakeFiles/P4_3504C_Asif.dir/GameState.cpp.o: \
  /opt/homebrew/include/SFML/Window/WindowHandle.hpp \
  /opt/homebrew/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o: \
+ ../Button.h \
  ../GameState.h \
  ../MineTile.cpp \
  ../MineTile.h \
@@ -238,6 +239,7 @@ CMakeFiles/P4_3504C_Asif.dir/MineTile.cpp.o: \
  /opt/homebrew/include/SFML/Window/WindowHandle.hpp \
  /opt/homebrew/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o: \
+ ../Button.h \
  ../GameState.h \
  ../Tile.cpp \
  ../Tile.h \
@@ -317,6 +319,7 @@ CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o: \
  /opt/homebrew/include/SFML/Window/WindowHandle.hpp \
  /opt/homebrew/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o: \
+ ../Button.h \
  ../GameState.h \
  ../Tile.h \
  ../Toolbox.cpp \
@@ -396,6 +399,7 @@ CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o: \
  /opt/homebrew/include/SFML/Window/WindowHandle.hpp \
  /opt/homebrew/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: \
+ ../Button.h \
  ../GameState.h \
  ../MineTile.h \
  ../Tile.h \

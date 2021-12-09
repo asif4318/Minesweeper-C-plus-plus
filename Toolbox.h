@@ -5,17 +5,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
+#include "Button.h"
 
-class Toolbox {
+class Toolbox
+{
 private:
     Toolbox();
     static inline Toolbox *instance;
+    //Button Textures
+    sf::Texture debugTexture;
+
 public:
     sf::RenderWindow window;
-    GameState* gameState;
-    /*Button* debugButton;
-    Button* newGameButton;
+    GameState *gameState;
+    Button *debugButton;
+    /*Button* newGameButton;
     Button* testButton1;
     Button* testButton2;*/
-    static Toolbox* getInstance();
+    static Toolbox *getInstance();
 };

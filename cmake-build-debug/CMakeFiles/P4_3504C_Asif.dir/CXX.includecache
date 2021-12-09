@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.cpp
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
+iostream
+-
+SFML/Graphics.hpp
+-
+
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.cpp
 GameState.h
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
@@ -30,9 +42,27 @@ vector
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 
+/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.cpp
+MineTile.h
+/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
+Toolbox.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
+iostream
+-
+SFML/Graphics.hpp
+-
+
 /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
+
+/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp
+Tile.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
+Toolbox.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
+iostream
+-
 
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 SFML/Graphics.hpp
@@ -40,11 +70,17 @@ SFML/Graphics.hpp
 array
 -
 
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.cpp
+Toolbox.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
+
 /Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
 SFML/Graphics.hpp
 -
 GameState.h
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
 
 /Users/asif/CLionProjects/P4-3504C-Asif/main.cpp
 minesweeper.h

@@ -10,8 +10,9 @@
 class GameState
 {
 private:
-    std::vector< std::vector<Tile *> > gameBoard;
+    std::vector<std::vector<Tile *>> gameBoard;
     void createTileNeighbors();
+
 public:
     enum PlayStatus
     {
@@ -19,11 +20,14 @@ public:
         LOSS,
         PLAYING
     };
-    private:
+
+private:
     PlayStatus status;
-    public:
+
+public:
     GameState(sf::Vector2f _dimensions = sf::Vector2f(25, 16), int _numberOfMines = 50);
     GameState(const char *filepath);
+    ~GameState();
     int getFlagCount();
     //TODO: GET MINE COUNT();
     int getMineCount();

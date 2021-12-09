@@ -21,5 +21,7 @@ sf::Sprite *Button::getSprite() {
 }
 
 void Button::setSprite(sf::Sprite *_sprite) {
-    this->sprite = _sprite;
+    sf::Sprite** spritePtr2Ptr = &_sprite;
+    this->sprite = *spritePtr2Ptr;
+    sprite->setPosition(position);
 }

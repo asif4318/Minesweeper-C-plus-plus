@@ -23,6 +23,8 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
     renderTexture.display();
 
     explodedTexture.loadFromImage(renderTexture.getTexture().copyToImage());
+
+    isMine = true;
 }
 
 void MineTile::onClickLeft()
@@ -30,6 +32,8 @@ void MineTile::onClickLeft()
     if (state == HIDDEN && state != FLAGGED)
     {
         setState(REVEALED);
+        Toolbox* tb = Toolbox::getInstance();
+        tb->window.close();
     }
 }
 
@@ -50,6 +54,8 @@ void MineTile::setState(State _state)
     case REVEALED:
     {
         sprite.setTexture(explodedTexture);
+        Toolbox* tb = Toolbox::getInstance();
+        tb->gameState->setPlayStatus(GameState::LOSS);
     }
     default:
         break;

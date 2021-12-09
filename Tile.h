@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <array>
 
+
 class Tile
 {
 public:
@@ -15,7 +16,6 @@ public:
 
 private:
     int numOfMines = 0;
-    void countSurroundingMines();
     void setRevealedSprite();
 
 protected:
@@ -24,11 +24,13 @@ protected:
     sf::Sprite sprite;
 
     static inline sf::Texture hidden;
-    static inline sf::Texture revealed;
+    sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
     std::array<Tile *, 8> neighbor;
 
 public:
+    bool isMine;
+
     Tile(sf::Vector2f position);
 
     sf::Vector2f getLocation();
