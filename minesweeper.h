@@ -15,7 +15,6 @@
 #include <string>
 #include <vector>
 
-#endif //P4_3504C_ASIF_MINESWEEPER_H
 
 bool DEBUG_MODE_STATE = false;
 
@@ -38,7 +37,7 @@ int gameLoop();
 int launch()
 {
     Toolbox *tb = Toolbox::getInstance();
-    tb->gameState = new GameState("boards/testboard1.brd");
+    tb->gameState = new GameState();
     gameLoop();
     return 0;
 };
@@ -77,12 +76,13 @@ int gameLoop()
         std::cerr << std::endl;
     }
 
-    //Create function pointers to pass to buttons
+    //Create function pointers to pass to buttons as callbacks
     void (*newGameFunc)() = &restart;
     void (*testGame1Func)() = &loadTest1Board;
     void (*testGame2Func)() = &loadTest2Board;
 
-    //Allocate new Buttons
+    //Allocate new Buttons, positions set by the side length of a tile 32;
+    //Set newGameButton to center
     tb->newGameButton = new Button(sf::Vector2f(tb->window.getSize().x / 2, 32 * 16), newGameFunc);
     tb->newGameButton->setSprite(new sf::Sprite());
     tb->newGameButton->getSprite()->setTexture(happyFace);
@@ -92,11 +92,13 @@ int gameLoop()
     tb->testButton1->setSprite(new sf::Sprite());
     tb->testButton1->getSprite()->setTexture(test1Texture);
 
+    //Set Debug to the left of the first button
     tb->debugButton = new Button(sf::Vector2f(32 * 18, 32 * 16), &toggleDebugMode);
     tb->debugButton->setSprite(new sf::Sprite());
     tb->debugButton->getSprite()->move(sf::Vector2f(-1 * (tb->testButton1->getSprite()->getGlobalBounds().width), 0));
     tb->debugButton->getSprite()->setTexture(debugTexture);
 
+    //Set Test 2 to the immediate right of the first button
     tb->testButton2 = new Button(sf::Vector2f(32 * 18, 32 * 16), testGame2Func);
     tb->testButton2->setSprite(new sf::Sprite());
     tb->testButton2->getSprite()->move(sf::Vector2f(tb->testButton1->getSprite()->getGlobalBounds().width, 0));
@@ -112,7 +114,7 @@ int gameLoop()
     while (tb->window.isOpen())
     {
         sf::Event event;
-        while (tb->window.pollEvent(event))
+        while (tb->window.pollEvent(event)) //Event Listener
         {
             switch (event.type)
             {
@@ -143,9 +145,11 @@ int gameLoop()
                     Tile *tempTile = tb->gameState->getTile(mouseTileX, mouseTileY);
                     if (!tempTile) //Handle if tile does not exist
                     {
-                        //Check the buttons
+                        //Check if the mouse clicked one of the buttons
                         if (tb->newGameButton->getSprite()->getGlobalBounds().contains(mousePosConverted))
                         {
+                            /*If new Game Button is pressed, change button image back to happy face and perform
+                                the callback*/
                             if (tb->gameState->getPlayStatus() == GameState::LOSS)
                             {
                                 tb->newGameButton->getSprite()->setTexture(happyFace);
@@ -172,22 +176,19 @@ int gameLoop()
                         else if (tb->debugButton->getSprite()->getGlobalBounds().contains(
                                      mousePosConverted))
                         {
-                            std::cout << "Debug pressed" << std::endl;
                             tb->debugButton->onClick();
                         }
                     }
+                    //Handle if a tile was clicked (tempTile is NOT NULL)
                     else if (tb->gameState->getPlayStatus() == GameState::PLAYING)
                     {
+                        //Perform the left click;
                         tempTile->onClickLeft();
-
-                        std::cout << "Mines remaining : "
-                                  << tb->gameState->getMineCount() - tb->gameState->getFlagCount() << std::endl;
 
                         bool isWon = false;
                         int numMines = tb->gameState->getMineCount();
                         int tilesNotRevealed = 0;
 
-                        //TODO: Add code to dynamically figure out board dimensions
                         for (int j = 0; j < getBoardDimensions().y; j++)
                         {
                             for (int i = 0; i < getBoardDimensions().x; i++)
@@ -199,12 +200,14 @@ int gameLoop()
                             }
                         }
 
+                        //If tiles not revealed equals number of mines -> win condition
                         if (tilesNotRevealed == numMines && tb->gameState->getPlayStatus() != GameState::LOSS)
                         {
                             tb->gameState->setPlayStatus(GameState::WIN);
                             tb->newGameButton->getSprite()->setTexture(winnerFace);
                         };
 
+                        //If a loss is registered by onClickLeft() (mine clicked) set status to lost
                         if (tb->gameState->getPlayStatus() == GameState::LOSS)
                         {
                             tb->newGameButton->getSprite()->setTexture(loserFace);
@@ -215,7 +218,6 @@ int gameLoop()
                 }
                 case sf::Mouse::Right:
                 {
-                    std::cout << mouseTileX << ", " << mouseTileY << std::endl;
                     Tile *tempTile = tb->gameState->getTile(mouseTileX, mouseTileY);
                     if (!tempTile)
                     {
@@ -223,17 +225,9 @@ int gameLoop()
                     }
                     else
                     {
-                        std::cout << "Right\n";
-                        if (dynamic_cast<MineTile *>(tempTile))
-                        {
-                            tempTile->onClickRight();
-                            render();
-                        }
-                        else
-                        {
-                            tempTile->onClickRight();
-                            render();
-                        }
+                        //Perform the tiles right click action
+                        tempTile->onClickRight();
+                        render();
                     }
                     break;
                 }
@@ -255,16 +249,18 @@ int gameLoop()
     return 0;
 }
 
-//Draw all UI Elements based on GameState
+//Draw ALL UI Elements based on GameState
 void render()
 {
     Toolbox *tb = Toolbox::getInstance();
     tb->window.clear(sf::Color::White);
 
+    //Load necessary textures
     sf::Texture digitsTexture;
     digitsTexture.loadFromFile("images/digits.png");
-    //sf::Sprite hundredsSprite, tensSprite, onesSprite;
 
+
+    //Following sprites & positions handle mine counter in bottom left corner of window
     sf::Vector2f hundredsSpritePosition = sf::Vector2f(0, getBoardDimensions().y * 32);
     sf::Vector2f tensSpritePosition = sf::Vector2f(21, getBoardDimensions().y * 32);
     sf::Vector2f onesSpritePosition = sf::Vector2f(42, getBoardDimensions().y * 32);
@@ -272,6 +268,9 @@ void render()
     sf::Sprite digit0, digit1, digit2, digit3, digit4, digit5,
         digit6, digit7, digit8, digit9, digitDash;
 
+    //setTextureRect allows for rectangular subsection of texture to be used
+    //Each digit has a width of 21, and a height of 32
+    //To get each successive digit just multiply x * 21;
     digit0.setTexture(digitsTexture);
     digit0.setTextureRect(sf::IntRect(0, 0, 21, 32));
     digit1.setTexture(digitsTexture);
@@ -295,6 +294,7 @@ void render()
     digitDash.setTexture(digitsTexture);
     digitDash.setTextureRect(sf::IntRect(21 * 10, 0, 21, 32));
 
+    //Create a vector of sprites;
     std::vector<sf::Sprite> digitVector = {digit0,
                                            digit1,
                                            digit2,
@@ -307,29 +307,36 @@ void render()
                                            digit9,
                                            digitDash};
 
+    //Get assumed number of mines
     int mineCount = tb->gameState->getMineCount() - tb->gameState->getFlagCount();
+    //Convert to string so each digit can be split individually
     std::string mineCountAsString = std::to_string(mineCount);
-    std::cout << "ASSUMED MINE COUNT: " << mineCountAsString << std::endl;
 
+    //There's only 3 digits to work with based on the image provided in spec sheet of 
+    //Game Board
     if (mineCount > -100 && mineCount < 999)
     {
+        //Handle mine count display based on # of digits
         switch (mineCountAsString.size())
         {
         case 3:
         {
             for (auto entry : digitVector)
             {
+                //Organize all sprites into one position to be layered over
                 entry.setPosition(hundredsSpritePosition);
             }
 
+            //Subtract by 48 to converted digit as char to int;
             digitVector[(int)mineCountAsString[1] - 48].setPosition(tensSpritePosition);
             tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
             digitVector[(int)mineCountAsString[2] - 48].setPosition(onesSpritePosition);
             tb->window.draw(digitVector[(int)mineCountAsString[2] - 48]);
 
+            //Handle negative case
             if (mineCountAsString[0] == '-')
             {
-                digitVector.back().setPosition(hundredsSpritePosition);
+                digitVector.back().setPosition(hundredsSpritePosition); //Vector back() is the minus digit
                 tb->window.draw(digitVector.back());
             }
             else
@@ -380,14 +387,18 @@ void render()
         }
     }
 
+    //Loop through tiles and draw them
     for (int j = 0; j < getBoardDimensions().y; j++)
     {
         for (int i = 0; i < getBoardDimensions().x; i++)
         {
             Tile *currentTile = tb->gameState->getTile(i, j);
+            //Upcast to Mine Tile
             if (dynamic_cast<MineTile *>(currentTile))
             {
                 MineTile *tileAsMinePtr = dynamic_cast<MineTile *>(currentTile);
+
+                //Reveal all the mines if debug mode is on;
                 if (getDebugMode() && tileAsMinePtr->getState() != Tile::State::EXPLODED)
                 {
                     tileAsMinePtr->setState(Tile::REVEALED);
@@ -406,11 +417,13 @@ void render()
         }
     }
 
+    //Draw the button sprites;
     tb->window.draw(*tb->debugButton->getSprite());
     tb->window.draw(*tb->testButton1->getSprite());
     tb->window.draw(*tb->testButton2->getSprite());
     tb->window.draw(*tb->newGameButton->getSprite());
 
+    //Finally display the updated window
     tb->window.display();
 }
 
@@ -418,10 +431,12 @@ void restart()
 {
     Toolbox *tb = Toolbox::getInstance();
     delete tb->gameState;
+    //Delete gameState to prevent mem leaks before creating new State
     tb->gameState = new GameState();
     render();
 }
 
+//Variation of restart but calls for board1
 void loadTest1Board()
 {
     Toolbox *tb = Toolbox::getInstance();
@@ -430,6 +445,7 @@ void loadTest1Board()
     render();
 };
 
+//Variation of restart but calls for board2
 void loadTest2Board()
 {
     Toolbox *tb = Toolbox::getInstance();
@@ -474,3 +490,5 @@ sf::Vector2i getBoardDimensions()
 }
 
 void drawMineCounter(std::vector<sf::Sprite *> _digits);
+
+#endif //P4_3504C_ASIF_MINESWEEPER_H

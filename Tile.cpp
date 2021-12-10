@@ -1,4 +1,4 @@
-#include "Tile.h"
+#include "Tile.h" //Also includes definition for MineTile.h
 #include "Toolbox.h"
 #include <iostream>
 
@@ -34,7 +34,6 @@ void Tile::onClickRight()
 
 Tile::Tile(sf::Vector2f position)
 {
-    isMine = false;
     this->position = position;
     state = HIDDEN;
     if (!hidden.loadFromFile("images/tile_hidden.png"))
@@ -124,7 +123,7 @@ void Tile::setRevealedSprite()
     {
         if (neighbor[i] != nullptr)
         {
-            if (neighbor[i]->getIsMine() == true)
+            if (dynamic_cast<MineTile *>(neighbor[i]))
                 mineCount++;
         }
     }
@@ -166,16 +165,6 @@ void Tile::setNeighbors(std::array<Tile *, 8> _neighbors)
     setRevealedSprite();
 }
 
-bool Tile::getIsMine()
-{
-    return isMine;
-}
-
-void Tile::setIsMine(bool mineState)
-{
-    isMine = mineState;
-}
-
 void Tile::revealNeighbors()
 {
     bool hasMine = false;
@@ -183,12 +172,12 @@ void Tile::revealNeighbors()
     {
         if (neighbor[i] != nullptr)
         {
-            if (neighbor[i]->getIsMine() == true || neighbor[i]->getState() == FLAGGED)
+            if (dynamic_cast<MineTile *>(neighbor[i]) || neighbor[i]->getState() == FLAGGED)
             {
                 hasMine = true;
             }
         }
-    }
+    };
 
     if (hasMine == false)
     {

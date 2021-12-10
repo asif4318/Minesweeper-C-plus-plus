@@ -314,7 +314,7 @@ CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: \
   /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h \
   /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
+  /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h \
   /Users/asif/CLionProjects/P4-3504C-Asif/Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream \
-  /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream

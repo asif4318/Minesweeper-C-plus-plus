@@ -5,7 +5,6 @@
 
 MineTile::MineTile(sf::Vector2f position) : Tile(position)
 {
-    setIsMine(true);
     this->position = position;
     this->sprite = new sf::Sprite();
     sprite->setPosition(getLocation().x * 32, getLocation().y * 32);

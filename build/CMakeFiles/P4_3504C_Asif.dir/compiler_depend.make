@@ -1273,6 +1273,7 @@ CMakeFiles/P4_3504C_Asif.dir/Tile.cpp.o: ../Tile.cpp \
   /opt/homebrew/include/SFML/Graphics/Text.hpp \
   /opt/homebrew/include/SFML/Graphics/VertexBuffer.hpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
+  ../MineTile.h \
   ../Toolbox.h \
   ../GameState.h \
   ../Button.h \
@@ -1593,6 +1594,7 @@ CMakeFiles/P4_3504C_Asif.dir/Toolbox.cpp.o: ../Toolbox.cpp \
   ../GameState.h \
   ../Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
+  ../MineTile.h \
   ../Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
@@ -1912,10 +1914,10 @@ CMakeFiles/P4_3504C_Asif.dir/main.cpp.o: ../main.cpp \
   ../GameState.h \
   ../Tile.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/array \
+  ../MineTile.h \
   ../Button.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/iostream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream \
-  ../MineTile.h
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.0.sdk/usr/include/c++/v1/istream
 
 
 ../Toolbox.cpp:
