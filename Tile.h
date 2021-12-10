@@ -14,14 +14,11 @@ public:
     };
 
 private:
+    State state;
     int numOfMines = 0;
     void setRevealedSprite();
-
-protected:
-    State state;
     sf::Vector2f position;
     sf::Sprite sprite;
-
     static inline sf::Texture hidden;
     sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
