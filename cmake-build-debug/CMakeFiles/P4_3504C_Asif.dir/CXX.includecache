@@ -59,6 +59,10 @@ GameState.h
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
 iostream
 -
+string
+-
+vector
+-
 
 /opt/homebrew/include/SFML/Config.hpp
 TargetConditionals.h

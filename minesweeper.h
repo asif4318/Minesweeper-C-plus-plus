@@ -51,7 +51,6 @@ int gameLoop()
     sf::Texture loserFace, happyFace, winnerFace;
     sf::Texture debugTexture;
     sf::Texture test1Texture, test2Texture;
-    sf::Texture digitsTexture;
 
     if (!loserFace.loadFromFile("images/face_lose.png"))
     {
@@ -337,39 +336,54 @@ void render()
     int mineCount = tb->gameState->getMineCount() - tb->gameState->getFlagCount();
     std::string mineCountAsString = std::to_string(mineCount);
 
+    if (mineCount > -100 && mineCount < 999) {}
     switch (mineCountAsString.size())
     {
     case 3:
     {
-        digitVector[(int)mineCountAsString[0] - 48].setPosition(hundredsSpritePosition);
         digitVector[(int)mineCountAsString[1] - 48].setPosition(tensSpritePosition);
         digitVector[(int)mineCountAsString[2] - 48].setPosition(onesSpritePosition);
 
-        if (mineCount < 0)
+        if (mineCountAsString[0] == '-')
         {
-            digitVector[10].setPosition(hundredsSpritePosition);
-            tb->window.draw(digitVector[10]);
+            digitVector.back().setPosition(hundredsSpritePosition);
+            tb->window.draw(digitVector.back());
         }
         else
         {
+            digitVector[(int)mineCountAsString[0] - 48].setPosition(hundredsSpritePosition);
             tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
         }
         tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
         tb->window.draw(digitVector[(int)mineCountAsString[2] - 48]);
+
+        break;
     }
     case 2:
     {
-        digitVector[(int)mineCountAsString[0] - 48].setPosition(tensSpritePosition);
         digitVector[(int)mineCountAsString[1] - 48].setPosition(onesSpritePosition);
 
-        tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+        if (mineCountAsString[0] == '-')
+        {
+            digitVector.back().setPosition(tensSpritePosition);
+            tb->window.draw(digitVector.back());
+        }
+        else
+        {
+            digitVector[(int)mineCountAsString[0] - 48].setPosition(tensSpritePosition);
+            tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+        }
+
         tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
+
+        break;
     }
     case 1:
     {
         digitVector[(int)mineCountAsString[0] - 48].setPosition(onesSpritePosition);
 
-        tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+        tb->window.draw(digitVector[(int)'0' - 48]);
+        break;
     }
     default:
         break;
