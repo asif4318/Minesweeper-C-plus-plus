@@ -307,6 +307,79 @@ void render()
                                            digit9,
                                            digitDash};
 
+    int mineCount = tb->gameState->getMineCount() - tb->gameState->getFlagCount();
+    std::string mineCountAsString = std::to_string(mineCount);
+    std::cout << "ASSUMED MINE COUNT: " << mineCountAsString << std::endl;
+
+    if (mineCount > -100 && mineCount < 999)
+    {
+        switch (mineCountAsString.size())
+        {
+        case 3:
+        {
+            for (auto entry : digitVector)
+            {
+                entry.setPosition(hundredsSpritePosition);
+            }
+
+            digitVector[(int)mineCountAsString[1] - 48].setPosition(tensSpritePosition);
+            tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
+            digitVector[(int)mineCountAsString[2] - 48].setPosition(onesSpritePosition);
+            tb->window.draw(digitVector[(int)mineCountAsString[2] - 48]);
+
+            if (mineCountAsString[0] == '-')
+            {
+                digitVector.back().setPosition(hundredsSpritePosition);
+                tb->window.draw(digitVector.back());
+            }
+            else
+            {
+                digitVector[(int)mineCountAsString[0] - 48].setPosition(hundredsSpritePosition);
+                tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+            }
+
+            break;
+        }
+        case 2:
+        {
+            for (auto entry : digitVector)
+            {
+                entry.setPosition(tensSpritePosition);
+            }
+
+            if (mineCountAsString[0] == '-')
+            {
+                digitVector.back().setPosition(tensSpritePosition);
+                tb->window.draw(digitVector.back());
+            }
+            else
+            {
+                digitVector[(int)mineCountAsString[0] - 48].setPosition(tensSpritePosition);
+
+                tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+            }
+
+            digitVector[(int)mineCountAsString[1] - 48].setPosition(onesSpritePosition);
+            tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
+
+            break;
+        }
+        case 1:
+        {
+            for (auto entry : digitVector)
+            {
+                entry.setPosition(onesSpritePosition);
+            }
+            digitVector[(int)mineCountAsString[0] - 48].setPosition(onesSpritePosition);
+
+            tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
     for (int j = 0; j < getBoardDimensions().y; j++)
     {
         for (int i = 0; i < getBoardDimensions().x; i++)
@@ -331,62 +404,6 @@ void render()
                 currentTile->draw();
             }
         }
-    }
-
-    int mineCount = tb->gameState->getMineCount() - tb->gameState->getFlagCount();
-    std::string mineCountAsString = std::to_string(mineCount);
-
-    if (mineCount > -100 && mineCount < 999) {}
-    switch (mineCountAsString.size())
-    {
-    case 3:
-    {
-        digitVector[(int)mineCountAsString[1] - 48].setPosition(tensSpritePosition);
-        digitVector[(int)mineCountAsString[2] - 48].setPosition(onesSpritePosition);
-
-        if (mineCountAsString[0] == '-')
-        {
-            digitVector.back().setPosition(hundredsSpritePosition);
-            tb->window.draw(digitVector.back());
-        }
-        else
-        {
-            digitVector[(int)mineCountAsString[0] - 48].setPosition(hundredsSpritePosition);
-            tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
-        }
-        tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
-        tb->window.draw(digitVector[(int)mineCountAsString[2] - 48]);
-
-        break;
-    }
-    case 2:
-    {
-        digitVector[(int)mineCountAsString[1] - 48].setPosition(onesSpritePosition);
-
-        if (mineCountAsString[0] == '-')
-        {
-            digitVector.back().setPosition(tensSpritePosition);
-            tb->window.draw(digitVector.back());
-        }
-        else
-        {
-            digitVector[(int)mineCountAsString[0] - 48].setPosition(tensSpritePosition);
-            tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
-        }
-
-        tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
-
-        break;
-    }
-    case 1:
-    {
-        digitVector[(int)mineCountAsString[0] - 48].setPosition(onesSpritePosition);
-
-        tb->window.draw(digitVector[(int)'0' - 48]);
-        break;
-    }
-    default:
-        break;
     }
 
     tb->window.draw(*tb->debugButton->getSprite());
