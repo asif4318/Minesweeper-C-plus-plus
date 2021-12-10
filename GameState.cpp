@@ -106,7 +106,7 @@ int GameState::getFlagCount()
     {
         for (int j = 0; j < gameBoard[0].size(); j++)
         {
-            if (gameBoard[i][j]->getState() == 2)
+            if (gameBoard[i][j]->getState() == Tile::FLAGGED)
                 flagCount++;
         }
     }

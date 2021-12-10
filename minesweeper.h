@@ -4,6 +4,7 @@
 
 #ifndef P4_3504C_ASIF_MINESWEEPER_H
 #define P4_3504C_ASIF_MINESWEEPER_H
+
 #include <SFML/Graphics.hpp>
 #include "Toolbox.h"
 #include "Tile.h"
@@ -11,17 +12,27 @@
 #include "MineTile.h"
 #include "GameState.h"
 #include <iostream>
+#include <string>
+#include <vector>
 
 #endif //P4_3504C_ASIF_MINESWEEPER_H
 
 bool DEBUG_MODE_STATE = false;
+
 void render();
+
 void restart();
+
 void loadTest1Board();
+
 void loadTest2Board();
+
 void toggleDebugMode();
+
 sf::Vector2i getBoardDimensions();
+
 bool getDebugMode();
+
 int gameLoop();
 
 int launch()
@@ -40,6 +51,8 @@ int gameLoop()
     sf::Texture loserFace, happyFace, winnerFace;
     sf::Texture debugTexture;
     sf::Texture test1Texture, test2Texture;
+    sf::Texture digitsTexture;
+
     if (!loserFace.loadFromFile("images/face_lose.png"))
     {
         std::cerr << std::endl;
@@ -149,12 +162,16 @@ int gameLoop()
                         if (tb->testButton1->getSprite()->getGlobalBounds().contains(mousePosConverted))
                         {
                             tb->testButton1->onClick();
+                            tb->newGameButton->getSprite()->setTexture(happyFace);
                         }
-                        else if (tb->testButton2->getSprite()->getGlobalBounds().contains(mousePosConverted))
+                        else if (tb->testButton2->getSprite()->getGlobalBounds().contains(
+                                     mousePosConverted))
                         {
                             tb->testButton2->onClick();
+                            tb->newGameButton->getSprite()->setTexture(happyFace);
                         }
-                        else if (tb->debugButton->getSprite()->getGlobalBounds().contains(mousePosConverted))
+                        else if (tb->debugButton->getSprite()->getGlobalBounds().contains(
+                                     mousePosConverted))
                         {
                             std::cout << "Debug pressed" << std::endl;
                             tb->debugButton->onClick();
@@ -163,6 +180,9 @@ int gameLoop()
                     else if (tb->gameState->getPlayStatus() == GameState::PLAYING)
                     {
                         tempTile->onClickLeft();
+
+                        std::cout << "Mines remaining : "
+                                  << tb->gameState->getMineCount() - tb->gameState->getFlagCount() << std::endl;
 
                         bool isWon = false;
                         int numMines = tb->gameState->getMineCount();
@@ -174,7 +194,8 @@ int gameLoop()
                             for (int i = 0; i < getBoardDimensions().x; i++)
                             {
                                 Tile *currentTile = tb->gameState->getTile(i, j);
-                                if (currentTile->getState() != Tile::REVEALED && currentTile->getState() != Tile::EXPLODED)
+                                if (currentTile->getState() != Tile::REVEALED &&
+                                    currentTile->getState() != Tile::EXPLODED)
                                     tilesNotRevealed++;
                             }
                         }
@@ -204,9 +225,17 @@ int gameLoop()
                     else
                     {
                         std::cout << "Right\n";
-                        tempTile->onClickRight();
+                        if (dynamic_cast<MineTile *>(tempTile))
+                        {
+                            tempTile->onClickRight();
+                            render();
+                        }
+                        else
+                        {
+                            tempTile->onClickRight();
+                            render();
+                        }
                     }
-                    render();
                     break;
                 }
                 default:
@@ -233,6 +262,52 @@ void render()
     Toolbox *tb = Toolbox::getInstance();
     tb->window.clear(sf::Color::White);
 
+    sf::Texture digitsTexture;
+    digitsTexture.loadFromFile("images/digits.png");
+    //sf::Sprite hundredsSprite, tensSprite, onesSprite;
+
+    sf::Vector2f hundredsSpritePosition = sf::Vector2f(0, getBoardDimensions().y * 32);
+    sf::Vector2f tensSpritePosition = sf::Vector2f(21, getBoardDimensions().y * 32);
+    sf::Vector2f onesSpritePosition = sf::Vector2f(42, getBoardDimensions().y * 32);
+
+    sf::Sprite digit0, digit1, digit2, digit3, digit4, digit5,
+        digit6, digit7, digit8, digit9, digitDash;
+
+    digit0.setTexture(digitsTexture);
+    digit0.setTextureRect(sf::IntRect(0, 0, 21, 32));
+    digit1.setTexture(digitsTexture);
+    digit1.setTextureRect(sf::IntRect(21 * 1, 0, 21, 32));
+    digit2.setTexture(digitsTexture);
+    digit2.setTextureRect(sf::IntRect(21 * 2, 0, 21, 32));
+    digit3.setTexture(digitsTexture);
+    digit3.setTextureRect(sf::IntRect(21 * 3, 0, 21, 32));
+    digit4.setTexture(digitsTexture);
+    digit4.setTextureRect(sf::IntRect(21 * 4, 0, 21, 32));
+    digit5.setTexture(digitsTexture);
+    digit5.setTextureRect(sf::IntRect(21 * 5, 0, 21, 32));
+    digit6.setTexture(digitsTexture);
+    digit6.setTextureRect(sf::IntRect(21 * 6, 0, 21, 32));
+    digit7.setTexture(digitsTexture);
+    digit7.setTextureRect(sf::IntRect(21 * 7, 0, 21, 32));
+    digit8.setTexture(digitsTexture);
+    digit8.setTextureRect(sf::IntRect(21 * 8, 0, 21, 32));
+    digit9.setTexture(digitsTexture);
+    digit9.setTextureRect(sf::IntRect(21 * 9, 0, 21, 32));
+    digitDash.setTexture(digitsTexture);
+    digitDash.setTextureRect(sf::IntRect(21 * 10, 0, 21, 32));
+
+    std::vector<sf::Sprite> digitVector = {digit0,
+                                           digit1,
+                                           digit2,
+                                           digit3,
+                                           digit4,
+                                           digit5,
+                                           digit6,
+                                           digit7,
+                                           digit8,
+                                           digit9,
+                                           digitDash};
+
     for (int j = 0; j < getBoardDimensions().y; j++)
     {
         for (int i = 0; i < getBoardDimensions().x; i++)
@@ -245,7 +320,8 @@ void render()
                 {
                     tileAsMinePtr->setState(Tile::REVEALED);
                 }
-                else if (!getDebugMode() && tileAsMinePtr->getState() != Tile::State::EXPLODED)
+                else if (!getDebugMode() && tileAsMinePtr->getState() != Tile::State::EXPLODED &&
+                         tileAsMinePtr->getState() != Tile::State::FLAGGED)
                 {
                     tileAsMinePtr->setState(Tile::HIDDEN);
                 }
@@ -256,6 +332,47 @@ void render()
                 currentTile->draw();
             }
         }
+    }
+
+    int mineCount = tb->gameState->getMineCount() - tb->gameState->getFlagCount();
+    std::string mineCountAsString = std::to_string(mineCount);
+
+    switch (mineCountAsString.size())
+    {
+    case 3:
+    {
+        digitVector[(int)mineCountAsString[0] - 48].setPosition(hundredsSpritePosition);
+        digitVector[(int)mineCountAsString[1] - 48].setPosition(tensSpritePosition);
+        digitVector[(int)mineCountAsString[2] - 48].setPosition(onesSpritePosition);
+
+        if (mineCount < 0)
+        {
+            digitVector[10].setPosition(hundredsSpritePosition);
+            tb->window.draw(digitVector[10]);
+        }
+        else
+        {
+            tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+        }
+        tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
+        tb->window.draw(digitVector[(int)mineCountAsString[2] - 48]);
+    }
+    case 2:
+    {
+        digitVector[(int)mineCountAsString[0] - 48].setPosition(tensSpritePosition);
+        digitVector[(int)mineCountAsString[1] - 48].setPosition(onesSpritePosition);
+
+        tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+        tb->window.draw(digitVector[(int)mineCountAsString[1] - 48]);
+    }
+    case 1:
+    {
+        digitVector[(int)mineCountAsString[0] - 48].setPosition(onesSpritePosition);
+
+        tb->window.draw(digitVector[(int)mineCountAsString[0] - 48]);
+    }
+    default:
+        break;
     }
 
     tb->window.draw(*tb->debugButton->getSprite());
@@ -304,7 +421,7 @@ void toggleDebugMode()
 sf::Vector2i getBoardDimensions()
 {
     Toolbox *tb = Toolbox::getInstance();
-    
+
     int dimensionsX = 1;
     int dimensionsY = 1;
     Tile *sampleX = tb->gameState->getTile(0, 0);
@@ -324,3 +441,5 @@ sf::Vector2i getBoardDimensions()
 
     return sf::Vector2i(dimensionsX, dimensionsY);
 }
+
+void drawMineCounter(std::vector<sf::Sprite *> _digits);

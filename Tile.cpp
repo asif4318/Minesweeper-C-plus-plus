@@ -18,6 +18,8 @@ void Tile::onClickRight()
     case FLAGGED:
     {
         setState(HIDDEN);
+        std::cout << "HIDDEN!\n";
+
         break;
     }
     case HIDDEN:
@@ -122,7 +124,7 @@ void Tile::setRevealedSprite()
     {
         if (neighbor[i] != nullptr)
         {
-            if (neighbor[i]->isMine == true)
+            if (neighbor[i]->getIsMine() == true)
                 mineCount++;
         }
     }
@@ -169,6 +171,11 @@ bool Tile::getIsMine()
     return isMine;
 }
 
+void Tile::setIsMine(bool mineState)
+{
+    isMine = mineState;
+}
+
 void Tile::revealNeighbors()
 {
     bool hasMine = false;
@@ -176,7 +183,7 @@ void Tile::revealNeighbors()
     {
         if (neighbor[i] != nullptr)
         {
-            if (neighbor[i]->getIsMine() == true)
+            if (neighbor[i]->getIsMine() == true || neighbor[i]->getState() == FLAGGED)
             {
                 hasMine = true;
             }

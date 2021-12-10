@@ -23,5 +23,6 @@ public:
     void onClickLeft();
     void onClickRight();
     void setState(State _state);
+    State getState();
     void draw();
 };

@@ -24,14 +24,14 @@ private:
     static inline sf::Texture flaggedTexture;
     std::array<Tile *, 8> neighbor;
     void createFlaggedTexture();
+    bool isMine;
 
 public:
-    bool isMine;
     Tile(sf::Vector2f position);
 
     sf::Vector2f getLocation();
 
-    State getState();
+    virtual State getState();
 
     std::array<Tile *, 8> &getNeighbors();
     void setNeighbors(std::array<Tile *, 8> _neighbors);
@@ -41,6 +41,7 @@ public:
     virtual void onClickRight();
     virtual void draw();
     bool getIsMine();
+    void setIsMine(bool mineState);
 
 protected:
     void revealNeighbors();

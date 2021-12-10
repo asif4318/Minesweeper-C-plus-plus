@@ -30,7 +30,6 @@ public:
     GameState(const char *filepath);
     ~GameState();
     int getFlagCount();
-    //TODO: GET MINE COUNT();
     int getMineCount();
     Tile *getTile(int x, int y);
     PlayStatus getPlayStatus();

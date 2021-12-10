@@ -14,22 +14,6 @@ iostream
 SFML/Graphics.hpp
 -
 
-/Users/asif/CLionProjects/P4-3504C-Asif/GameState.cpp
-GameState.h
-/Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
-MineTile.h
-/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
-iostream
--
-vector
--
-chrono
--
-random
--
-fstream
--
-
 /Users/asif/CLionProjects/P4-3504C-Asif/GameState.h
 SFML/Graphics.hpp
 -
@@ -37,16 +21,6 @@ vector
 -
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
-
-/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.cpp
-MineTile.h
-/Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
-Toolbox.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
-iostream
--
-SFML/Graphics.hpp
--
 
 /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
 Tile.h
