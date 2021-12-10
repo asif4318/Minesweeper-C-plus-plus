@@ -5,7 +5,7 @@
 
 MineTile::MineTile(sf::Vector2f position) : Tile(position)
 {
-    isMine = true;
+    setIsMine(true);
     this->position = position;
     this->sprite = new sf::Sprite();
     sprite->setPosition(getLocation().x * 32, getLocation().y * 32);
@@ -21,8 +21,6 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
 
     createExplodedTexture();
     createFlaggedTexture();
-
-    sprite->setTexture(this->hidden);
 
     setState(HIDDEN);
 }
@@ -65,6 +63,36 @@ void MineTile::onClickLeft()
     }
 }
 
+void MineTile::onClickRight()
+{
+    switch (this->state)
+    {
+    case FLAGGED:
+    {
+        setState(HIDDEN);
+        std::cout << "HIDDEN!\n";
+        break;
+    }
+    case HIDDEN:
+    {
+        setState(FLAGGED);
+        std::cout << "Flagged!\n";
+        break;
+    }
+    default:
+        break;
+    case REVEALED:
+        break;
+    case EXPLODED:
+        break;
+    }
+};
+
+Tile::State MineTile::getState()
+{
+    return this->state;
+}
+
 void MineTile::setState(State _state)
 {
     switch (_state)
@@ -72,11 +100,13 @@ void MineTile::setState(State _state)
     case FLAGGED:
     {
         sprite->setTexture(flaggedTexture);
+        this->state = FLAGGED;
         break;
     }
     case HIDDEN:
     {
         sprite->setTexture(hidden);
+        this->state = HIDDEN;
         break;
     }
     case EXPLODED:
@@ -84,38 +114,19 @@ void MineTile::setState(State _state)
         sprite->setTexture(explodedTexture);
         Toolbox *tb = Toolbox::getInstance();
         tb->gameState->setPlayStatus(GameState::LOSS);
+        this->state = EXPLODED;
         break;
     }
     case REVEALED:
     {
         sprite->setTexture(explodedTexture);
+        this->state = REVEALED;
         break;
     }
     default:
         break;
     }
-
-    this->state = _state;
 }
-
-void MineTile::onClickRight()
-{
-    switch (state)
-    {
-    case FLAGGED:
-    {
-        setState(HIDDEN);
-        break;
-    }
-    case HIDDEN:
-    {
-        setState(FLAGGED);
-        break;
-    }
-    default:
-        break;
-    }
-};
 
 void MineTile::createFlaggedTexture()
 {
