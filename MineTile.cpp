@@ -29,11 +29,11 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
 
 void MineTile::onClickLeft()
 {
-    if (state == HIDDEN && state != FLAGGED)
+    if (getState() == HIDDEN && getState() != FLAGGED)
     {
-        setState(REVEALED);
-        Toolbox* tb = Toolbox::getInstance();
-        tb->window.close();
+        setState(EXPLODED);
+        Toolbox *tb = Toolbox::getInstance();
+        tb->gameState->setPlayStatus(GameState::LOSS);
     }
 }
 
@@ -51,11 +51,17 @@ void MineTile::setState(State _state)
         sprite.setTexture(hidden);
         break;
     }
+    case EXPLODED:
+    {
+        sprite.setTexture(explodedTexture);
+        Toolbox *tb = Toolbox::getInstance();
+        tb->gameState->setPlayStatus(GameState::LOSS);
+        break;
+    }
     case REVEALED:
     {
         sprite.setTexture(explodedTexture);
-        Toolbox* tb = Toolbox::getInstance();
-        tb->gameState->setPlayStatus(GameState::LOSS);
+        break;
     }
     default:
         break;

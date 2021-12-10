@@ -12,6 +12,7 @@ class GameState
 private:
     std::vector<std::vector<Tile *>> gameBoard;
     void createTileNeighbors();
+    int mineCount;
 
 public:
     enum PlayStatus

@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include <array>
 
-
 class Tile
 {
 public:
@@ -30,7 +29,6 @@ protected:
 
 public:
     bool isMine;
-
     Tile(sf::Vector2f position);
 
     sf::Vector2f getLocation();
@@ -44,6 +42,7 @@ public:
     virtual void onClickLeft();
     void onClickRight();
     void draw();
+    bool getIsMine();
 
 protected:
     void revealNeighbors();

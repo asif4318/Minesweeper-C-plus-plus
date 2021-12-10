@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/asif/CLionProjects/P4-3504C-Asif/Button.cpp
-Button.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
-
 /Users/asif/CLionProjects/P4-3504C-Asif/Button.h
 Button.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Button.h
@@ -93,6 +89,8 @@ Toolbox.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
+Button.h
+/Users/asif/CLionProjects/P4-3504C-Asif/Button.h
 MineTile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/MineTile.h
 GameState.h

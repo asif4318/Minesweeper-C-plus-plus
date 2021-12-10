@@ -12,6 +12,10 @@
 
 GameState::GameState(sf::Vector2f _dimensions, int _numberOfMines)
 {
+    //Set Mine count
+    mineCount = _numberOfMines;
+    //Set state to Playing
+    status = PLAYING;
     //Create vector of 1's and 0's and then shuffle for randomizatoin
     std::vector<int> randomBoard = std::vector<int>();
     for (int i = 0; i < _numberOfMines; i++)
@@ -49,6 +53,9 @@ GameState::GameState(sf::Vector2f _dimensions, int _numberOfMines)
 
 GameState::GameState(const char *filepath)
 {
+    status = PLAYING;
+
+    mineCount = 0;
     std::string line;
     std::ifstream is(filepath);
     if (is.is_open())
@@ -60,6 +67,7 @@ GameState::GameState(const char *filepath)
             {
                 if (line[i] == '1')
                 {
+                    mineCount++;
                     tiles.push_back(new MineTile(sf::Vector2f(i, gameBoard.size())));
                 }
                 else if (line[i] == '0')
@@ -81,12 +89,14 @@ GameState::GameState(const char *filepath)
 
 Tile *GameState::getTile(int x, int y)
 {
-    if (y > gameBoard.size())
+    if (y >= gameBoard.size() || y < 0)
         return nullptr;
-    if (x > gameBoard[0].size())
+    if (x >= gameBoard[0].size() || x < 0)
         return nullptr;
     return gameBoard[y][x];
 }
+
+int GameState::getMineCount() { return mineCount; }
 
 int GameState::getFlagCount()
 {
@@ -114,7 +124,8 @@ void GameState::setPlayStatus(PlayStatus _status)
     this->status = _status;
 }
 
-void GameState::createTileNeighbors() {
+void GameState::createTileNeighbors()
+{
     for (int i = 0; i < gameBoard.size(); i++)
     {
         for (int j = 0; j < gameBoard[i].size(); j++)
@@ -137,20 +148,24 @@ void GameState::createTileNeighbors() {
                 tileNeighbor[6] = gameBoard[i + 1][j];
 
             //Set top left
-            if (j != 0 && i != 0) {
-                tileNeighbor[0] = gameBoard[i-1][j-1];
+            if (j != 0 && i != 0)
+            {
+                tileNeighbor[0] = gameBoard[i - 1][j - 1];
             }
             //Set top right
-            if (j != gameBoard[i].size() - 1 && i != 0) {
-                tileNeighbor[2] = gameBoard[i-1][j+1];
+            if (j != gameBoard[i].size() - 1 && i != 0)
+            {
+                tileNeighbor[2] = gameBoard[i - 1][j + 1];
             }
             //Set Bottom Left
-            if (j != 0 && i != gameBoard.size()-1) {
-                tileNeighbor[5] = gameBoard[i+1][j-1];
+            if (j != 0 && i != gameBoard.size() - 1)
+            {
+                tileNeighbor[5] = gameBoard[i + 1][j - 1];
             }
             //Set Bottom Right
-            if (j != gameBoard[i].size()-1 && i != gameBoard.size()-1) {
-                tileNeighbor[7] = gameBoard[i+1][j+1];
+            if (j != gameBoard[i].size() - 1 && i != gameBoard.size() - 1)
+            {
+                tileNeighbor[7] = gameBoard[i + 1][j + 1];
             }
 
             gameBoard[i][j]->setNeighbors(tileNeighbor);
@@ -158,9 +173,12 @@ void GameState::createTileNeighbors() {
     }
 }
 
-GameState::~GameState() {
-    for (int i = 0; i < gameBoard.size(); i++) {
-        for (auto tile : gameBoard[i]) {
+GameState::~GameState()
+{
+    for (int i = 0; i < gameBoard.size(); i++)
+    {
+        for (auto tile : gameBoard[i])
+        {
             delete tile;
         }
         gameBoard[i].clear();

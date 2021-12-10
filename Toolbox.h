@@ -12,15 +12,15 @@ class Toolbox
 private:
     Toolbox();
     static inline Toolbox *instance;
+
     //Button Textures
     sf::Texture debugTexture;
+    sf::Texture test1Texture, test2Texture, test3Texture;
+    sf::Texture happyFace, loserFace, winnerFace;
 
 public:
     sf::RenderWindow window;
     GameState *gameState;
-    Button *debugButton;
-    /*Button* newGameButton;
-    Button* testButton1;
-    Button* testButton2;*/
+    Button *debugButton, *newGameButton, *testButton1, *testButton2;
     static Toolbox *getInstance();
 };

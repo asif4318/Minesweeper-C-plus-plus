@@ -6,6 +6,7 @@
 Button::Button(sf::Vector2f _position, std::function<void(void)> _onClick) {
     this->position = _position;
     this->callback = _onClick;
+    this->sprite = nullptr;
 }
 
 void Button::onClick() {

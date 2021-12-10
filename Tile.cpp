@@ -160,6 +160,10 @@ void Tile::setNeighbors(std::array<Tile *, 8> _neighbors)
     setRevealedSprite();
 }
 
+bool Tile::getIsMine() {
+    return isMine;
+}
+
 void Tile::revealNeighbors()
 {
     bool hasMine = false;
@@ -167,7 +171,7 @@ void Tile::revealNeighbors()
     {
         if (neighbor[i] != nullptr)
         {
-            if (neighbor[i]->isMine == true)
+            if (neighbor[i]->getIsMine() == true)
             {
                 hasMine = true;
             }
