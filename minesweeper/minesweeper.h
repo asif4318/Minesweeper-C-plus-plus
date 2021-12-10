@@ -25,6 +25,8 @@ void loadTest1Board();
 
 void loadTest2Board();
 
+void loadTest3Board();
+
 void toggleDebugMode();
 
 sf::Vector2i getBoardDimensions();
@@ -48,7 +50,7 @@ int gameLoop()
     //Load Game Button textures
     sf::Texture loserFace, happyFace, winnerFace;
     sf::Texture debugTexture;
-    sf::Texture test1Texture, test2Texture;
+    sf::Texture test1Texture, test2Texture, test3Texture;
 
     if (!loserFace.loadFromFile("images/face_lose.png"))
     {
@@ -74,11 +76,16 @@ int gameLoop()
     {
         std::cerr << std::endl;
     }
+    if (!test3Texture.loadFromFile("images/test_3.png"))
+    {
+        std::cerr << std::endl;
+    }
 
     //Create function pointers to pass to buttons as callbacks
     void (*newGameFunc)() = &restart;
     void (*testGame1Func)() = &loadTest1Board;
     void (*testGame2Func)() = &loadTest2Board;
+    void (*testGame3Func)() = &loadTest3Board;
 
     //Allocate new Buttons, positions set by the side length of a tile 32;
     //Set newGameButton to center
@@ -102,6 +109,12 @@ int gameLoop()
     tb->testButton2->setSprite(new sf::Sprite());
     tb->testButton2->getSprite()->move(sf::Vector2f(tb->testButton1->getSprite()->getGlobalBounds().width, 0));
     tb->testButton2->getSprite()->setTexture(test2Texture);
+
+    //Set Test 3 to the immediate right of the second button
+    tb->testButton3 = new Button(sf::Vector2f(32 * 18, 32 * 16), testGame3Func);
+    tb->testButton3->setSprite(new sf::Sprite());
+    tb->testButton3->getSprite()->move(sf::Vector2f(tb->testButton1->getSprite()->getGlobalBounds().width * 2, 0));
+    tb->testButton3->getSprite()->setTexture(test3Texture);
 
     //Set Game Status
     tb->gameState->setPlayStatus(GameState::PLAYING);
@@ -410,6 +423,7 @@ void render()
     tb->window.draw(*tb->debugButton->getSprite());
     tb->window.draw(*tb->testButton1->getSprite());
     tb->window.draw(*tb->testButton2->getSprite());
+    tb->window.draw(*tb->testButton3->getSprite());
     tb->window.draw(*tb->newGameButton->getSprite());
 
     //Finally display the updated window
@@ -440,6 +454,14 @@ void loadTest2Board()
     Toolbox *tb = Toolbox::getInstance();
     delete tb->gameState;
     tb->gameState = new GameState("boards/testboard2.brd");
+    render();
+};
+
+void loadTest3Board()
+{
+    Toolbox *tb = Toolbox::getInstance();
+    delete tb->gameState;
+    tb->gameState = new GameState("boards/testboard3.brd");
     render();
 };
 
