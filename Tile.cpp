@@ -43,13 +43,21 @@ Tile::Tile(sf::Vector2f position)
     {
         std::cerr << std::endl;
     }
+
+    //Create flagged + hidden Tile texture with RenderTexture
+    createFlaggedTexture();
+    //Set Texture to hidden by default
+    sprite.setTexture(hidden);
+    sprite.setPosition(this->position);
+}
+
+void Tile::createFlaggedTexture()
+{
     sf::Texture flag;
     if (!flag.loadFromFile("images/flag.png"))
     {
         std::cerr << std::endl;
     }
-
-    //Create flagged + hidden Tile texture with RenderTexture
     sf::RenderTexture flaggedTile;
     flaggedTile.create(hidden.getSize().x, hidden.getSize().y);
     flaggedTile.clear(sf::Color::Black);
@@ -62,10 +70,6 @@ Tile::Tile(sf::Vector2f position)
     flaggedTile.draw(flagSprite);
     flaggedTile.display();
     flaggedTexture.loadFromImage(flaggedTile.getTexture().copyToImage());
-
-    //Set Texture to hidden by default
-    sprite.setTexture(hidden);
-    sprite.setPosition(this->position);
 }
 
 sf::Vector2f Tile::getLocation()
@@ -123,7 +127,7 @@ void Tile::setRevealedSprite()
         }
     }
 
-    std::cout << "Tile Mine count is: " << mineCount << std::endl;
+    //std::cout << "Tile Mine count is: " << mineCount << std::endl;
     if (mineCount != 0)
     {
         sf::RenderTexture renderTexture;
@@ -160,7 +164,8 @@ void Tile::setNeighbors(std::array<Tile *, 8> _neighbors)
     setRevealedSprite();
 }
 
-bool Tile::getIsMine() {
+bool Tile::getIsMine()
+{
     return isMine;
 }
 
@@ -185,8 +190,9 @@ void Tile::revealNeighbors()
             if (neighbor[i] != nullptr)
             {
                 //Don't go over tiles that are already revealed;
-                if (neighbor[i]->getState() != REVEALED){
-                    std::cout << "Location of revealed tile is: " << position.x << ", " << position.y << std::endl;
+                if (neighbor[i]->getState() != REVEALED)
+                {
+                    //std::cout << "Location of revealed tile is: " << position.x << ", " << position.y << std::endl;
 
                     neighbor[i]->setState(Tile::REVEALED);
                     neighbor[i]->revealNeighbors();

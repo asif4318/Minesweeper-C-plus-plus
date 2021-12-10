@@ -23,9 +23,11 @@ void toggleDebugMode();
 bool getDebugMode();
 int gameLoop();
 
+sf::Texture test;
+
 int launch()
 {
-
+    test.loadFromFile("images/mine.png");
     Toolbox *tb = Toolbox::getInstance();
     tb->gameState = new GameState("boards/testboard1.brd");
     gameLoop();
@@ -177,7 +179,7 @@ int gameLoop()
                             }
                         }
 
-                        if (tilesNotRevealed == numMines)
+                        if (tilesNotRevealed == numMines && tb->gameState->getPlayStatus() != GameState::LOSS)
                         {
                             tb->gameState->setPlayStatus(GameState::WIN);
                             tb->newGameButton->getSprite()->setTexture(winnerFace);
@@ -237,11 +239,20 @@ void render()
         for (int i = 0; i < 25; i++)
         {
             Tile *currentTile = tb->gameState->getTile(i, j);
-            if (getDebugMode() == true)
+            if (dynamic_cast<MineTile *>(currentTile))
             {
-                
+                MineTile *tileAsMinePtr = dynamic_cast<MineTile *>(currentTile);
+                tileAsMinePtr->draw();
+                /*if (getDebugMode())
+                {
+                    MineTile *tileAsMinePtr = dynamic_cast<MineTile *>(currentTile);
+                    tileAsMinePtr->setState(Tile::REVEALED);
+                }*/
             }
-            currentTile->draw();
+            else
+            {
+                currentTile->draw();
+            }
         }
     }
 

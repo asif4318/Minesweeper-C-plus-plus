@@ -5,6 +5,30 @@
 
 MineTile::MineTile(sf::Vector2f position) : Tile(position)
 {
+    isMine = true;
+    this->position = position;
+    this->sprite = new sf::Sprite();
+    sprite->setPosition(this->position);
+
+    if (!this->hidden.loadFromFile("images/tile_hidden.png"))
+    {
+        std::cerr << std::endl;
+    }
+    if (!this->revealed.loadFromFile("images/tile_revealed.png"))
+    {
+        std::cerr << std::endl;
+    }
+
+    createExplodedTexture();
+    createFlaggedTexture();
+
+    sprite->setTexture(this->hidden);
+
+    setState(HIDDEN);
+}
+
+void MineTile::createExplodedTexture()
+{
     sf::RenderTexture renderTexture;
     renderTexture.create(32, 32);
 
@@ -21,10 +45,13 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
     renderTexture.draw(mineSprite);
 
     renderTexture.display();
+    this->explodedTexture.loadFromImage(renderTexture.getTexture().copyToImage());
+}
 
-    explodedTexture.loadFromImage(renderTexture.getTexture().copyToImage());
-
-    isMine = true;
+void MineTile::draw()
+{
+    Toolbox *tb = Toolbox::getInstance();
+    tb->window.draw(*this->sprite);
 }
 
 void MineTile::onClickLeft()
@@ -43,24 +70,24 @@ void MineTile::setState(State _state)
     {
     case FLAGGED:
     {
-        sprite.setTexture(flaggedTexture);
+        sprite->setTexture(flaggedTexture);
         break;
     }
     case HIDDEN:
     {
-        sprite.setTexture(hidden);
+        sprite->setTexture(hidden);
         break;
     }
     case EXPLODED:
     {
-        sprite.setTexture(explodedTexture);
+        sprite->setTexture(explodedTexture);
         Toolbox *tb = Toolbox::getInstance();
         tb->gameState->setPlayStatus(GameState::LOSS);
         break;
     }
     case REVEALED:
     {
-        sprite.setTexture(explodedTexture);
+        sprite->setTexture(explodedTexture);
         break;
     }
     default:
@@ -68,4 +95,44 @@ void MineTile::setState(State _state)
     }
 
     this->state = _state;
+}
+
+void MineTile::onClickRight()
+{
+    switch (state)
+    {
+    case FLAGGED:
+    {
+        setState(HIDDEN);
+        break;
+    }
+    case HIDDEN:
+    {
+        setState(FLAGGED);
+        break;
+    }
+    default:
+        break;
+    }
+};
+
+void MineTile::createFlaggedTexture()
+{
+    sf::Texture flag;
+    if (!flag.loadFromFile("images/flag.png"))
+    {
+        std::cerr << std::endl;
+    }
+    sf::RenderTexture flaggedTile;
+    flaggedTile.create(hidden.getSize().x, hidden.getSize().y);
+    flaggedTile.clear(sf::Color::Black);
+
+    sf::Sprite hiddenTileSprite;
+    sf::Sprite flagSprite;
+    hiddenTileSprite.setTexture(hidden);
+    flagSprite.setTexture(flag);
+    flaggedTile.draw(hiddenTileSprite);
+    flaggedTile.draw(flagSprite);
+    flaggedTile.display();
+    flaggedTexture.loadFromImage(flaggedTile.getTexture().copyToImage());
 }

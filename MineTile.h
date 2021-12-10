@@ -5,16 +5,25 @@ class MineTile : public Tile
 {
 private:
     State state;
-    static inline sf::Texture explodedTexture;
     sf::Vector2f position;
-    sf::Sprite sprite;
-    static inline sf::Texture hidden;
+
+public:
+    sf::Sprite *sprite;
+
+private:
+    static inline sf::Texture flag, hidden;
     sf::Texture revealed;
+
     static inline sf::Texture flaggedTexture;
-    std::array<Tile *, 8> neighbor;
+
+    void createFlaggedTexture();
+    static inline sf::Texture explodedTexture;
+    void createExplodedTexture();
 
 public:
     MineTile(sf::Vector2f position);
     void onClickLeft();
+    void onClickRight();
     void setState(State _state);
+    void draw();
 };

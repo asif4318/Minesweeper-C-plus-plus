@@ -13,16 +13,17 @@ public:
         EXPLODED
     };
 
-private:
+protected:
+    sf::Sprite sprite;
     State state;
     int numOfMines = 0;
     void setRevealedSprite();
     sf::Vector2f position;
-    sf::Sprite sprite;
     static inline sf::Texture hidden;
     sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
     std::array<Tile *, 8> neighbor;
+    void createFlaggedTexture();
 
 public:
     bool isMine;
@@ -37,8 +38,8 @@ public:
 
     virtual void setState(State _state);
     virtual void onClickLeft();
-    void onClickRight();
-    void draw();
+    virtual void onClickRight();
+    virtual void draw();
     bool getIsMine();
 
 protected:

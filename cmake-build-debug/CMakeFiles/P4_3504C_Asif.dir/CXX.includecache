@@ -52,23 +52,11 @@ SFML/Graphics.hpp
 Tile.h
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 
-/Users/asif/CLionProjects/P4-3504C-Asif/Tile.cpp
-Tile.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
-Toolbox.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
-iostream
--
-
 /Users/asif/CLionProjects/P4-3504C-Asif/Tile.h
 SFML/Graphics.hpp
 -
 array
 -
-
-/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.cpp
-Toolbox.h
-/Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
 
 /Users/asif/CLionProjects/P4-3504C-Asif/Toolbox.h
 SFML/Graphics.hpp
