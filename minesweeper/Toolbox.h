@@ -21,6 +21,6 @@ private:
 public:
     sf::RenderWindow window;
     GameState *gameState;
-    Button *debugButton, *newGameButton, *testButton1, *testButton2, *testButton3;
+    Button *debugButton, *newGameButton, *testButton1, *testButton2;
     static Toolbox *getInstance();
 };
