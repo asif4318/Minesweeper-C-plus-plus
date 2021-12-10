@@ -15,7 +15,6 @@
 #include <string>
 #include <vector>
 
-
 bool DEBUG_MODE_STATE = false;
 
 void render();
@@ -150,15 +149,7 @@ int gameLoop()
                         {
                             /*If new Game Button is pressed, change button image back to happy face and perform
                                 the callback*/
-                            if (tb->gameState->getPlayStatus() == GameState::LOSS)
-                            {
-                                tb->newGameButton->getSprite()->setTexture(happyFace);
-                            }
-
-                            if (tb->gameState->getPlayStatus() == GameState::WIN)
-                            {
-                                tb->newGameButton->getSprite()->setTexture(happyFace);
-                            }
+                            tb->newGameButton->getSprite()->setTexture(happyFace);
                             tb->newGameButton->onClick();
                         }
 
@@ -203,8 +194,8 @@ int gameLoop()
                         //If tiles not revealed equals number of mines -> win condition
                         if (tilesNotRevealed == numMines && tb->gameState->getPlayStatus() != GameState::LOSS)
                         {
-                            tb->gameState->setPlayStatus(GameState::WIN);
                             tb->newGameButton->getSprite()->setTexture(winnerFace);
+                            tb->gameState->setPlayStatus(GameState::WIN);
                         };
 
                         //If a loss is registered by onClickLeft() (mine clicked) set status to lost
@@ -259,7 +250,6 @@ void render()
     sf::Texture digitsTexture;
     digitsTexture.loadFromFile("images/digits.png");
 
-
     //Following sprites & positions handle mine counter in bottom left corner of window
     sf::Vector2f hundredsSpritePosition = sf::Vector2f(0, getBoardDimensions().y * 32);
     sf::Vector2f tensSpritePosition = sf::Vector2f(21, getBoardDimensions().y * 32);
@@ -312,7 +302,7 @@ void render()
     //Convert to string so each digit can be split individually
     std::string mineCountAsString = std::to_string(mineCount);
 
-    //There's only 3 digits to work with based on the image provided in spec sheet of 
+    //There's only 3 digits to work with based on the image provided in spec sheet of
     //Game Board
     if (mineCount > -100 && mineCount < 999)
     {

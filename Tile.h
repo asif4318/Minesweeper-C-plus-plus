@@ -14,17 +14,15 @@ public:
     };
 
 private:
-    sf::Sprite sprite;
+    sf::Sprite sprite; //Tile sprite
     State state;
-    int numOfMines = 0;
-    void setRevealedSprite();
+    void setRevealedSprite(); //Create a sprite based on number of surrounding mines
     sf::Vector2f position;
     static inline sf::Texture hidden;
     sf::Texture revealed;
     static inline sf::Texture flaggedTexture;
-    std::array<Tile *, 8> neighbor;
+    std::array<Tile *, 8> neighbors;
     void createFlaggedTexture();
-    bool isMine;
 
 public:
     Tile(sf::Vector2f position);
@@ -40,8 +38,6 @@ public:
     virtual void onClickLeft();
     virtual void onClickRight();
     virtual void draw();
-    bool getIsMine();
-    void setIsMine(bool mineState);
 
 protected:
     void revealNeighbors();

@@ -121,9 +121,9 @@ void Tile::setRevealedSprite()
     //Count the number of neighboring mines
     for (int i = 0; i < 8; i++)
     {
-        if (neighbor[i] != nullptr)
+        if (neighbors[i] != nullptr)
         {
-            if (dynamic_cast<MineTile *>(neighbor[i]))
+            if (dynamic_cast<MineTile *>(neighbors[i]))
                 mineCount++;
         }
     }
@@ -156,12 +156,12 @@ void Tile::setRevealedSprite()
 
 std::array<Tile *, 8> &Tile::getNeighbors()
 {
-    return neighbor;
+    return neighbors;
 }
 
 void Tile::setNeighbors(std::array<Tile *, 8> _neighbors)
 {
-    neighbor = _neighbors;
+    neighbors = _neighbors;
     setRevealedSprite();
 }
 
@@ -170,9 +170,9 @@ void Tile::revealNeighbors()
     bool hasMine = false;
     for (int i = 0; i < 8; i++)
     {
-        if (neighbor[i] != nullptr)
+        if (neighbors[i] != nullptr)
         {
-            if (dynamic_cast<MineTile *>(neighbor[i]) || neighbor[i]->getState() == FLAGGED)
+            if (dynamic_cast<MineTile *>(neighbors[i]) || neighbors[i]->getState() == FLAGGED)
             {
                 hasMine = true;
             }
@@ -183,15 +183,15 @@ void Tile::revealNeighbors()
     {
         for (int i = 0; i < 8; i++)
         {
-            if (neighbor[i] != nullptr)
+            if (neighbors[i] != nullptr)
             {
                 //Don't go over tiles that are already revealed;
-                if (neighbor[i]->getState() != REVEALED)
+                if (neighbors[i]->getState() != REVEALED)
                 {
                     //std::cout << "Location of revealed tile is: " << position.x << ", " << position.y << std::endl;
 
-                    neighbor[i]->setState(Tile::REVEALED);
-                    neighbor[i]->revealNeighbors();
+                    neighbors[i]->setState(Tile::REVEALED);
+                    neighbors[i]->revealNeighbors();
                 }
             }
         }

@@ -9,6 +9,7 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
     this->sprite = new sf::Sprite();
     sprite->setPosition(getLocation().x * 32, getLocation().y * 32);
 
+    //Load textures
     if (!this->hidden.loadFromFile("images/tile_hidden.png"))
     {
         std::cerr << std::endl;
@@ -24,6 +25,7 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
     setState(HIDDEN);
 }
 
+//Combines mine.png & revealed together
 void MineTile::createExplodedTexture()
 {
     sf::RenderTexture renderTexture;
@@ -60,6 +62,13 @@ void MineTile::onClickLeft()
         Toolbox *tb = Toolbox::getInstance();
         tb->gameState->setPlayStatus(GameState::LOSS);
     }
+
+    if (getState() == REVEALED) //Handle when debugged mine is clicked
+    {
+        setState(EXPLODED);
+        Toolbox *tb = Toolbox::getInstance();
+        tb->gameState->setPlayStatus(GameState::LOSS);
+    }
 }
 
 void MineTile::onClickRight()
@@ -69,20 +78,14 @@ void MineTile::onClickRight()
     case FLAGGED:
     {
         setState(HIDDEN);
-        std::cout << "HIDDEN!\n";
         break;
     }
     case HIDDEN:
     {
         setState(FLAGGED);
-        std::cout << "Flagged!\n";
         break;
     }
     default:
-        break;
-    case REVEALED:
-        break;
-    case EXPLODED:
         break;
     }
 };
