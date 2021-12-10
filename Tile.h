@@ -13,7 +13,7 @@ public:
         EXPLODED
     };
 
-protected:
+private:
     sf::Sprite sprite;
     State state;
     int numOfMines = 0;

@@ -8,7 +8,7 @@ MineTile::MineTile(sf::Vector2f position) : Tile(position)
     isMine = true;
     this->position = position;
     this->sprite = new sf::Sprite();
-    sprite->setPosition(this->position);
+    sprite->setPosition(getLocation().x * 32, getLocation().y * 32);
 
     if (!this->hidden.loadFromFile("images/tile_hidden.png"))
     {
@@ -51,6 +51,7 @@ void MineTile::createExplodedTexture()
 void MineTile::draw()
 {
     Toolbox *tb = Toolbox::getInstance();
+    sprite->setPosition(getLocation().x * 32, getLocation().y * 32);
     tb->window.draw(*this->sprite);
 }
 

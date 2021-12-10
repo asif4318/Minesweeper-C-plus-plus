@@ -20,14 +20,12 @@ void restart();
 void loadTest1Board();
 void loadTest2Board();
 void toggleDebugMode();
+sf::Vector2i getBoardDimensions();
 bool getDebugMode();
 int gameLoop();
 
-sf::Texture test;
-
 int launch()
 {
-    test.loadFromFile("images/mine.png");
     Toolbox *tb = Toolbox::getInstance();
     tb->gameState = new GameState("boards/testboard1.brd");
     gameLoop();
@@ -73,20 +71,21 @@ int gameLoop()
     void (*testGame2Func)() = &loadTest2Board;
 
     //Allocate new Buttons
-    tb->newGameButton = new Button(sf::Vector2f(0, 32 * 16), newGameFunc);
+    tb->newGameButton = new Button(sf::Vector2f(tb->window.getSize().x / 2, 32 * 16), newGameFunc);
     tb->newGameButton->setSprite(new sf::Sprite());
     tb->newGameButton->getSprite()->setTexture(happyFace);
+    tb->newGameButton->getSprite()->move(-(tb->newGameButton->getSprite()->getGlobalBounds().width / 2), 0);
 
-    tb->testButton1 = new Button(sf::Vector2f(32 * 17, 32 * 16), testGame1Func);
+    tb->testButton1 = new Button(sf::Vector2f(32 * 18, 32 * 16), testGame1Func);
     tb->testButton1->setSprite(new sf::Sprite());
     tb->testButton1->getSprite()->setTexture(test1Texture);
 
-    tb->debugButton = new Button(sf::Vector2f(32 * 17, 32 * 16), []() {});
+    tb->debugButton = new Button(sf::Vector2f(32 * 18, 32 * 16), &toggleDebugMode);
     tb->debugButton->setSprite(new sf::Sprite());
     tb->debugButton->getSprite()->move(sf::Vector2f(-1 * (tb->testButton1->getSprite()->getGlobalBounds().width), 0));
     tb->debugButton->getSprite()->setTexture(debugTexture);
 
-    tb->testButton2 = new Button(sf::Vector2f(32 * 17, 32 * 16), testGame2Func);
+    tb->testButton2 = new Button(sf::Vector2f(32 * 18, 32 * 16), testGame2Func);
     tb->testButton2->setSprite(new sf::Sprite());
     tb->testButton2->getSprite()->move(sf::Vector2f(tb->testButton1->getSprite()->getGlobalBounds().width, 0));
     tb->testButton2->getSprite()->setTexture(test2Texture);
@@ -157,6 +156,7 @@ int gameLoop()
                         }
                         else if (tb->debugButton->getSprite()->getGlobalBounds().contains(mousePosConverted))
                         {
+                            std::cout << "Debug pressed" << std::endl;
                             tb->debugButton->onClick();
                         }
                     }
@@ -169,9 +169,9 @@ int gameLoop()
                         int tilesNotRevealed = 0;
 
                         //TODO: Add code to dynamically figure out board dimensions
-                        for (int j = 0; j < 16; j++)
+                        for (int j = 0; j < getBoardDimensions().y; j++)
                         {
-                            for (int i = 0; i < 25; i++)
+                            for (int i = 0; i < getBoardDimensions().x; i++)
                             {
                                 Tile *currentTile = tb->gameState->getTile(i, j);
                                 if (currentTile->getState() != Tile::REVEALED && currentTile->getState() != Tile::EXPLODED)
@@ -233,21 +233,23 @@ void render()
     Toolbox *tb = Toolbox::getInstance();
     tb->window.clear(sf::Color::White);
 
-    //TODO: Add code to dynamically figure out board dimensions
-    for (int j = 0; j < 16; j++)
+    for (int j = 0; j < getBoardDimensions().y; j++)
     {
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < getBoardDimensions().x; i++)
         {
             Tile *currentTile = tb->gameState->getTile(i, j);
             if (dynamic_cast<MineTile *>(currentTile))
             {
                 MineTile *tileAsMinePtr = dynamic_cast<MineTile *>(currentTile);
-                tileAsMinePtr->draw();
-                /*if (getDebugMode())
+                if (getDebugMode() && tileAsMinePtr->getState() != Tile::State::EXPLODED)
                 {
-                    MineTile *tileAsMinePtr = dynamic_cast<MineTile *>(currentTile);
                     tileAsMinePtr->setState(Tile::REVEALED);
-                }*/
+                }
+                else if (!getDebugMode() && tileAsMinePtr->getState() != Tile::State::EXPLODED)
+                {
+                    tileAsMinePtr->setState(Tile::HIDDEN);
+                }
+                tileAsMinePtr->draw();
             }
             else
             {
@@ -298,3 +300,27 @@ void toggleDebugMode()
     DEBUG_MODE_STATE = !DEBUG_MODE_STATE;
     render();
 };
+
+sf::Vector2i getBoardDimensions()
+{
+    Toolbox *tb = Toolbox::getInstance();
+    
+    int dimensionsX = 1;
+    int dimensionsY = 1;
+    Tile *sampleX = tb->gameState->getTile(0, 0);
+    Tile *sampleY = tb->gameState->getTile(0, 0);
+
+    while (sampleX->getNeighbors()[4] != nullptr)
+    {
+        dimensionsX++;
+        sampleX = sampleX->getNeighbors()[4];
+    }
+
+    while (sampleY->getNeighbors()[6] != nullptr)
+    {
+        dimensionsY++;
+        sampleY = sampleY->getNeighbors()[6];
+    }
+
+    return sf::Vector2i(dimensionsX, dimensionsY);
+}

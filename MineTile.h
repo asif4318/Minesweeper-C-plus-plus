@@ -6,8 +6,6 @@ class MineTile : public Tile
 private:
     State state;
     sf::Vector2f position;
-
-public:
     sf::Sprite *sprite;
 
 private:
