@@ -176,6 +176,12 @@ int gameLoop()
                             tb->testButton2->onClick();
                             tb->newGameButton->getSprite()->setTexture(happyFace);
                         }
+                        else if (tb->testButton3->getSprite()->getGlobalBounds().contains(
+                                     mousePosConverted))
+                        {
+                            tb->testButton3->onClick();
+                            tb->newGameButton->getSprite()->setTexture(happyFace);
+                        }
                         else if (tb->debugButton->getSprite()->getGlobalBounds().contains(
                                      mousePosConverted))
                         {
